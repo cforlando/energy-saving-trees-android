@@ -1,0 +1,112 @@
+[
+  {
+    "Tree": "Live Oak",
+    "Description": "Live Oaks are moderate-growing, sprawling evergreen canopy trees. They are drought-resistant and highly tolerant of urban conditions.",
+    "Height": "Height: 60-80 feet",
+    "Width": "Width: 60-120 feet",
+    "Shape": "Shape: broad-spreading, round",
+    "Leaf": "Leaf type: evergreen",
+    "Soil": "Soil preference: clay; sand; loam; alkaline; acidic; occasionally wet; well-drained",
+    "Moisture": "Moisture preference: drought tolerant",
+    "Sunlight": "Sunlight requirements: full sun"
+  },
+  {
+    "Tree": "Nuttall Oak",
+    "Description": "Fast-growing oak that establishes quickly and has great branch development in its early years.  The Nuttal Oak has lobed leaves and produces acorns that wildlife thrive on in December and January.",
+    "Height": "40-60 feet",
+    "Width": "35-50 feet",
+    "Shape": "Shape: upright",
+    "Leaf": "Leaf type: deciduous",
+    "Soil": "Soil preference: clay; sand; loam; acidic; extended flooding; well-drained",
+    "Moisture": "Moisture preference: dry to moist soil",
+    "Sunlight": "Sunlight requirements: full sun"
+  },
+  {
+    "Tree": "Southern Magnolia",
+    "Description": "Slow grower and very adaptable. Large white flowers bloom March through May.",
+    "Height": "40-60 feet",
+    "Width": "8-12 feet",
+    "Shape": "Shape: pyramidal",
+    "Leaf": "Leaf type: evergreen",
+    "Soil": "Soil preference: clay; loam; sand; slightly alkaline; acidic",
+    "Moisture": "Moisture preference: Prefers a moist soil; water every 7-10 days during hot, dry weather until established; drought tolerant once established.",
+    "Sunlight": "Sunlight requirements: full sun, tolerates light shade."
+  },
+  {
+    "Tree": "Tabebuia Ipe",
+    "Description": "Slow to moderate grower that is large and round shaped. This tree has a smooth ray trunk and produces lavish pinkish-purple blooms in early spring.",
+    "Height": "12-18 feet",
+    "Width": "10-15 feet",
+    "Shape": "Shape: round",
+    "Leaf": "Leaf type: deciduous",
+    "Soil": "Soil Preference: clay; sand; loam; alkaline; acidic; well-drained",
+    "Moisture": "Moisture preference: dry to somewhat moist soil",
+    "Sunlight": "Sunlight requirements: full sun"
+  },
+  {
+    "Tree": "Winged Elm",
+    "Description": "Moderate to rapid grower with corky, wing-like projections on branches. It is a native tree that attracts birds and other wildlife.",
+    "Height": "40-50 feet",
+    "Width": "30-40 feet",
+    "Shape": "Shape: upright",
+    "Leaf": "Leaf type: deciduous",
+    "Soil": "Soil preference: clay; sand; loam; alkaline; acidic; extended flooding; well-drained",
+    "Moisture": "Moisture preference: dry soil",
+    "Sunlight": "Sunlight requirements: full sun, partial sun or partial shade"
+  },
+  {
+    "Tree": "Crape Myrtle",
+    "Description": "Beautiful summer flowers and attractive fall foliage combined with drought tolerance and urban adaptability make Crape Myrtles an excellent tree choice.",
+    "Height": "10-30 feet",
+    "Width": "15-25 feet",
+    "Shape": "Shape: vase",
+    "Leaf": "Leaf type: deciduous",
+    "Soil": "Soil preference: clay; sand; loam; alkaline; well-drained",
+    "Moisture": "Moisture preference: dry to somewhat moist soil",
+    "Sunlight": "Sunlight requirements: full sun"
+  },
+  {
+    "Tree": "Eagleston Holly",
+    "Description": "Moderate to slow growing evergreen tree with a conical shape and showy, red berries in the fall.",
+    "Height": "30-45 feet",
+    "Width": "Width: 10-15 feet",
+    "Shape": "Shape: conical",
+    "Leaf": "Leaf type: evergreen",
+    "Soil": "Soil preference: clay; sand; loam; acidic; well-drained",
+    "Moisture": "Moisture preference: dry to somewhat moist",
+    "Sunlight": "Sunlight requirements: full sun, partial sun or partial shade"
+  },
+  {
+    "Tree": "Japanese Blueberry",
+    "Description": "This rapid growing evergreen tree has small white flowers with deep blue fruit. Its leaves have bronze-red color on new growth.",
+    "Height": "30-40 feet",
+    "Width": "30-40 feet",
+    "Shape": "Shape: upright",
+    "Leaf": "Leaf type: evergreen",
+    "Soil": "Soil preference: rich, well-drained slightly acidic soil",
+    "Moisture": "Moisture preference: somewhat moist soil",
+    "Sunlight": "Sunlight requirements: partial to full sun"
+  },
+  {
+    "Tree": "Yaupon Holly",
+    "Description": "Moderate growing evergreen tree.  Its showy, red berries attract pollinators in the fall. It_s a rounded vase, multi-stem tree that can be clipped into a tight hedge or allowed to grow as a small tree with contorted trunks.",
+    "Height": "15-25 feet",
+    "Width": "15-20 feet",
+    "Shape": "Shape: rounded vase, multi-stem",
+    "Leaf": "Leaf type: evergreen",
+    "Soil": "Soil preference: clay; sand; loam; alkaline; acidic; extended flooding; well-drained",
+    "Moisture": "Moisture preference: dry to somewhat moist soil",
+    "Sunlight": "Sunlight requirements: full sun to shade"
+  },
+  {
+    "Tree": "Yellow Tabebuia",
+    "Description": "This yellow trumpet tree is a rapid to moderate growing deciduous tree with showy, yellow flowers in the spring",
+    "Height": "25-35 feet",
+    "Width": "25-35 feet",
+    "Shape": "Shape: spreading",
+    "Leaf": "Leaf type: deciduous",
+    "Soil": "Soil preference: clay; sand; loam; acidic; alkaline; well-drained",
+    "Moisture": "Moisture preference; somewhat moist soil",
+    "Sunlight": "Sunlight requirements: full sun"
+  }
+]
