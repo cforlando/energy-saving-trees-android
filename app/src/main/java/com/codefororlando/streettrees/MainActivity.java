@@ -1,6 +1,5 @@
 package com.codefororlando.streettrees;
 
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
