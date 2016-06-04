@@ -1,5 +1,7 @@
 package com.codefororlando.streettrees.api.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Date;
 
 public class Tree {
@@ -7,9 +9,16 @@ public class Tree {
 
     private Date date;
 
-    private Location location;
+    private LatLng location;
 
     private String treeName;
+
+    public Tree(Date _date, double _lat, double _long, String _treeName){
+        setDate(_date);
+        setLocation( _lat, _long);
+        setTreeName(_treeName);
+    }
+
 
     public String getTreeName() {
         return treeName;
@@ -19,18 +28,16 @@ public class Tree {
         this.treeName = treeName;
     }
 
-    public Location getLocation() {
+    public LatLng getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LatLng location) {
         this.location = location;
     }
 
     public void setLocation(double latitude, double longitude) {
-        Location location = new Location();
-        location.setLatitude(latitude);
-        location.setLongitude(longitude);
+        LatLng location = new LatLng(latitude,longitude);
         this.location = location;
     }
 
