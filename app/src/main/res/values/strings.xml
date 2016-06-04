@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Street Trees</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
