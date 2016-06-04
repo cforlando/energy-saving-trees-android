@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
+import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.VisibleRegion;
