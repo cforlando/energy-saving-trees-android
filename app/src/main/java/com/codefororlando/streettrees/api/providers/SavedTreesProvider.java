@@ -94,7 +94,7 @@ public class SavedTreesProvider {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
             treeModel.setDate(dateFormat.parse(tree.date));
 
-            LatLng point = new LatLng(treeModel.getLocation().getLatitude(), treeModel.getLocation().getLongitude());
+            LatLng point = treeModel.getLocation();
             treeCache.put(point, treeModel);
         }
     }
