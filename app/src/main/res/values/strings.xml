@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Street Trees</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="directions">Directions</string>
+    <string name="widthlabel">Width:</string>
+    <string name="heightlabel">Height:</string>
+    <string name="shapelabel">Shape:</string>
+    <string name="leaf_typelabel">Leaf Type:</string>
+    <string name="moisturelabel">Moisture:</string>
+    <string name="sunlightlabel">Sunlight:</string>
+    <string name="soillabel">Soil:</string>
 </resources>
