@@ -13,6 +13,10 @@ public class Tree {
 
     private String treeName;
 
+    public Tree(){
+
+    }
+
     public Tree(Date _date, double _lat, double _long, String _treeName){
         setDate(_date);
         setLocation( _lat, _long);
