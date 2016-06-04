@@ -6,4 +6,7 @@
     <string name="heightlabel">Height:</string>
     <string name="shapelabel">Shape:</string>
     <string name="leaf_typelabel">Leaf Type:</string>
+    <string name="moisturelabel">Moisture:</string>
+    <string name="sunlightlabel">Sunlight:</string>
+    <string name="soillabel">Soil:</string>
 </resources>

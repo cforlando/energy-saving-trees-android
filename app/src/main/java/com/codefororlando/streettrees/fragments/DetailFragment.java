@@ -1,12 +1,15 @@
 package com.codefororlando.streettrees.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.api.models.TreeDescription;
 
 /**
  * Created by jdonlan on 6/4/16.
@@ -14,6 +17,8 @@ import com.codefororlando.streettrees.R;
 public class DetailFragment extends Fragment {
 
     public static final String TAG = "DETAILFRAGMENT";
+    private DetailListener activityListener;
+    private View layoutView;
 
     public static DetailFragment newInstance() {
         DetailFragment frag = new DetailFragment();
@@ -25,14 +30,39 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof DetailListener){
+            activityListener = (DetailListener) context;
+        } else {
+            throw new IllegalArgumentException("Cannot attach DetailFragment to Activity without DetailListener");
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail_activity, container, false);
-        return view;
+        layoutView  = inflater.inflate(R.layout.fragment_detail_activity, container, false);
+        return layoutView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        TreeDescription treeDescription = activityListener.getTreeData();
+
+        ((TextView) layoutView.findViewById(R.id.treeHeight)).setText(treeDescription.getHeight());
+        ((TextView) layoutView.findViewById(R.id.treeLeaf)).setText(treeDescription.getLeaf());
+        ((TextView) layoutView.findViewById(R.id.treeShape)).setText(treeDescription.getShape());
+        ((TextView) layoutView.findViewById(R.id.treeWidth)).setText(treeDescription.getWidth());
+        ((TextView) layoutView.findViewById(R.id.treeSunlight)).setText(treeDescription.getSunlight());
+        ((TextView) layoutView.findViewById(R.id.treSoil)).setText(treeDescription.getSoil());
+        ((TextView) layoutView.findViewById(R.id.treeMoisture)).setText(treeDescription.getMoisture());
+        ((TextView) layoutView.findViewById(R.id.treeDescription)).setText(treeDescription.getDescription());
+        ((TextView) layoutView.findViewById(R.id.treeType)).setText(treeDescription.getTreeName());
+    }
+
+    public interface DetailListener{
+        public TreeDescription getTreeData();
     }
 
 }

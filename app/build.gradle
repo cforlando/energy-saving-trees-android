@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -26,6 +29,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.google.maps.android:android-maps-utils:0.4+'
     compile 'com.google.android.gms:play-services:9.0.2'
-    compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
-
+    compile 'com.google.code.gson:gson:1.7.2'
 }
