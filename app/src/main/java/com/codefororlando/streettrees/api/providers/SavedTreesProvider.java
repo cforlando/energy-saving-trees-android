@@ -42,7 +42,7 @@ public class SavedTreesProvider {
         PopulateCache(context);
     }
 
-    public Iterable<Tree> getVisibleTrees(final VisibleRegion region) {
+    public Tree[] getVisibleTrees(final VisibleRegion region) {
         // TODO: When the API gets fixed, call the API in addition to using the internal cache
         // TODO: Find a better data structure than just iterating over a list
         // TODO: Use an AsyncTask
@@ -55,7 +55,7 @@ public class SavedTreesProvider {
                 trees.add(tree);
             }
         }
-        return trees;
+        return trees.toArray(new Tree[0]);
     }
 
 //    public Tree getTreeDetails(int orderId) {
