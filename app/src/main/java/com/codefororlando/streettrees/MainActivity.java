@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,6 +23,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,9 +39,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int REQUEST_ACCESS_FINE_LOCATION = 10001;
     public static final String EXTRA_LOCATION = "location";
     public static final String EXTRA_TREETYPE = "type";
-
-    //TEMP DATA
-    private Tree[] treeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map = googleMap;
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
-
-        //TODO: Use actual tree data.
-        Tree treeA = new Tree(new SimpleDateFormat().parse("2015-11-13T23:37:00.000", new ParsePosition(0)), 28.562917, -81.350608, "Nuttall Oak");
-        Tree treeB = new Tree(new SimpleDateFormat().parse("2015-11-13T21:46:00.000", new ParsePosition(0)), 28.499321, -81.479695, "Tuliptree");
-
-        treeData = new Tree[]{treeA, treeB};
-
-        addMarkersToMap(treeData);
-
-    }
-
-    private void addMarkersToMap(Tree[] trees) {
-        // Add a marker in Sydney and move the camera
-        for (Tree tree : trees) {
-            map.addMarker(new MarkerOptions().position(tree.getLocation()).title(tree.getTreeName()));
-        }
+        map.setOnCameraChangeListener(this);
 
         String locationProvider = locationManager.getBestProvider(new Criteria(), true);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -90,7 +75,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(latitude, longitude);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.animateCamera(CameraUpdateFactory.zoomTo(16));
+    }
 
+    private void addMarkersToMap(Tree[] trees) {
+        // Add a marker in Sydney and move the camera
+        for (Tree tree : trees) {
+            map.addMarker(new MarkerOptions().position(tree.getLocation()).title(tree.getTreeName()));
+        }
     }
 
     @Override
@@ -108,8 +99,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         startActivity(detailIntent);
     }
 
+
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
-        VisibleRegion visibleRegion = map.getProjection().getVisibleRegion();
+        try {
+            SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
+            VisibleRegion vr = map.getProjection().getVisibleRegion();
+            addMarkersToMap(provider.getVisibleTrees(vr));
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
