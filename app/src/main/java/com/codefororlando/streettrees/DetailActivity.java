@@ -19,6 +19,8 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     final String TAG = "DETAILACTIVITY";
 
     private TreeDescription treeDescription;
+    private LatLng location;
+    private String treeType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +35,22 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         }
 
         Intent loadingIntent = getIntent();
-        LatLng location = loadingIntent.getParcelableExtra(MainActivity.EXTRA_LOCATION);
-        String treeType = loadingIntent.getStringExtra(MainActivity.EXTRA_TREETYPE);
-        loadTreeData(location,treeType);
+        location = loadingIntent.getParcelableExtra(MainActivity.EXTRA_LOCATION);
+        treeType = loadingIntent.getStringExtra(MainActivity.EXTRA_TREETYPE);
     }
 
     private void loadTreeData(LatLng _location, String _treeType){
-        try {
-            TreeDescriptionProvider treeDescriptionProvider = TreeDescriptionProvider.getInstance(getApplicationContext());
-            treeDescription = treeDescriptionProvider.getTreeDescription(_treeType);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
     public TreeDescription getTreeData() {
+        try {
+            TreeDescriptionProvider treeDescriptionProvider = TreeDescriptionProvider.getInstance(getApplicationContext());
+            treeDescription = treeDescriptionProvider.getTreeDescription(treeType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return treeDescription;
     }
 }
