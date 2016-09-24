@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         try {
             SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
             VisibleRegion vr = map.getProjection().getVisibleRegion();
-            addMarkersToMap(provider.getVisibleTrees(vr));
+            addMarkersToMap(provider.getVisibleTrees(vr, 20));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
