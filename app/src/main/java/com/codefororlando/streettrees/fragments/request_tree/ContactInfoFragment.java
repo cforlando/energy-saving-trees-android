@@ -1,8 +1,9 @@
 package com.codefororlando.streettrees.fragments.request_tree;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.api.models.Address;
 import com.codefororlando.streettrees.api.models.ContactInfo;
 import com.codefororlando.streettrees.view.PageFragment;
 
@@ -23,6 +23,15 @@ public class ContactInfoFragment extends PageFragment {
     EditText nameField;
     EditText phoneNumberField;
     EditText emailField;
+
+    ContactInfoListener contactInfoListener;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle("Contact Info");
+    }
 
     @Nullable
     @Override
@@ -51,9 +60,27 @@ public class ContactInfoFragment extends PageFragment {
         contactInfo.setName(nameField.getText().toString());
         contactInfo.setPhoneNumber(phoneNumberField.getText().toString());
         contactInfo.setEmail(emailField.getText().toString());
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(ContactInfo.TAG, contactInfo);
-        listener.next(bundle);
+        contactInfoListener.onFormFilled(contactInfo);
+        pageListener.next();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (Activity) context;
+        try {
+            // Instantiate the NoticeDialogListener so we can send events to the host
+            contactInfoListener = (ContactInfoListener) activity;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                    + " must implement ContactInfoListener");
+        }
+    }
+
+
+    public interface ContactInfoListener {
+        void onFormFilled(ContactInfo contactInfo);
     }
 
 }

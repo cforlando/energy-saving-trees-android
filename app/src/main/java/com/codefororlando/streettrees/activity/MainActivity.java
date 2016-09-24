@@ -1,16 +1,16 @@
-package com.codefororlando.streettrees;
+package com.codefororlando.streettrees.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,9 +25,6 @@ import com.google.android.gms.maps.model.VisibleRegion;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {

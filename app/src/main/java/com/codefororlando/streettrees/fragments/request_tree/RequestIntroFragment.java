@@ -1,10 +1,7 @@
 package com.codefororlando.streettrees.fragments.request_tree;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,7 @@ public class RequestIntroFragment extends PageFragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.next(null);
+                pageListener.next();
             }
         });
         return  view;

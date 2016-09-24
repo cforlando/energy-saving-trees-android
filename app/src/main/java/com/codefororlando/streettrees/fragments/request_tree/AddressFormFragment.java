@@ -1,5 +1,7 @@
 package com.codefororlando.streettrees.fragments.request_tree;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -26,11 +28,20 @@ public class AddressFormFragment extends PageFragment {
     EditText stateField;
     EditText zipField;
 
+    AddressFormListener addressFormListener;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle("Address");
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_address, container, false);
-
+        bindUi(view);
         return  view;
     }
 
@@ -57,8 +68,25 @@ public class AddressFormFragment extends PageFragment {
         address.setCity(cityField.getText().toString());
         address.setState(stateField.getText().toString());
         address.setZip(zipField.getText().toString());
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(Address.TAG, address);
-        listener.next(bundle);
+        addressFormListener.onFormFilled(address);
+        pageListener.next();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (Activity) context;
+        try {
+            // Instantiate the NoticeDialogListener so we can send events to the host
+            addressFormListener = (AddressFormListener) activity;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                    + " must implement AddressFormListener");
+        }
+    }
+
+    public interface AddressFormListener {
+        void onFormFilled(Address address);
     }
 }

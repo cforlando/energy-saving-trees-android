@@ -33,7 +33,7 @@ public class TreeDescriptionProvider {
 
     private TreeDescriptionProvider(Context context) throws IOException, ParseException {
         treeCache = new HashMap<>();
-        PopulateCache(context);
+        populateCache(context);
     }
 
     public TreeDescription getTreeDescription(String description) {
@@ -43,39 +43,49 @@ public class TreeDescriptionProvider {
         return treeCache.get(description);
     }
 
-    private void PopulateCache(Context context) throws IOException, ParseException {
-        InputStream is = context.getResources().openRawResource(R.raw.descriptions);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
+    private void populateCache(final Context context) throws IOException, ParseException {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                InputStream is = context.getResources().openRawResource(R.raw.descriptions);
+                Writer writer = new StringWriter();
+                char[] buffer = new char[1024];
+                try {
+                    Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    int n;
+                    while ((n = reader.read(buffer)) != -1) {
+                        writer.write(buffer, 0, n);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        is.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                String jsonString = writer.toString();
+                Gson gson = new GsonBuilder().create();
+                TreeDescriptionJsonModel[] trees = gson.fromJson(jsonString, TreeDescriptionJsonModel[].class);
+                for (TreeDescriptionJsonModel tree : trees) {
+                    TreeDescription model = new TreeDescription();
+
+                    model.setTreeName(tree.Tree);
+                    model.setDescription(tree.Description);
+                    model.setHeight(tree.Height);
+                    model.setWidth(tree.Width);
+                    model.setLeaf(tree.Leaf);
+                    model.setShape(tree.Shape);
+                    model.setMoisture(tree.Moiture);
+                    model.setSunlight(tree.Sunlight);
+                    model.setSoil(tree.Soil);
+
+                    treeCache.put(model.getTreeName(), model);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            is.close();
-        }
+        }).run();
 
-        String jsonString = writer.toString();
-        Gson gson = new GsonBuilder().create();
-        TreeDescriptionJsonModel[] trees = gson.fromJson(jsonString, TreeDescriptionJsonModel[].class);
-        for (TreeDescriptionJsonModel tree : trees) {
-            TreeDescription model = new TreeDescription();
-
-            model.setTreeName(tree.Tree);
-            model.setDescription(tree.Description);
-            model.setHeight(tree.Height);
-            model.setWidth(tree.Width);
-            model.setLeaf(tree.Leaf);
-            model.setShape(tree.Shape);
-            model.setMoisture(tree.Moiture);
-            model.setSunlight(tree.Sunlight);
-            model.setSoil(tree.Soil);
-
-            treeCache.put(model.getTreeName(), model);
-        }
     }
 }

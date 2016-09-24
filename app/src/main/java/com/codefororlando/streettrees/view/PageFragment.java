@@ -2,7 +2,6 @@ package com.codefororlando.streettrees.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 /**
@@ -10,7 +9,7 @@ import android.support.v4.app.Fragment;
  */
 public class PageFragment extends Fragment {
 
-    protected PageFragmentListener listener;
+    protected PageFragmentListener pageListener;
 
     @Override
     public void onAttach(Context context) {
@@ -18,7 +17,7 @@ public class PageFragment extends Fragment {
         Activity activity = (Activity) context;
         try {
             // Instantiate the NoticeDialogListener so we can send events to the host
-            listener = (PageFragmentListener) activity;
+            pageListener = (PageFragmentListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
@@ -27,7 +26,7 @@ public class PageFragment extends Fragment {
     }
 
     public interface PageFragmentListener {
-        void next(Bundle bundle);
+        void next();
         void previous();
     }
 }
