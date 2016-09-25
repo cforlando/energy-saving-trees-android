@@ -1,5 +1,6 @@
 package com.codefororlando.streettrees.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -14,9 +15,7 @@ import android.view.View;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
-import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
-import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,13 +25,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
+import com.google.maps.android.geojson.GeoJsonLayer;
+
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
@@ -44,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final String EXTRA_LOCATION = "location";
     public static final String EXTRA_TREETYPE = "type";
 
+    String locationProvider;
+
+    public static final int FINE_LOCATION_REQUEST_CODE = 103;   //random number
+    private int DEFAULT_ZOOM_LEVEL = 10;
     public static final int DEFAULT_MARKER_LIMIT = 20;
 
     FloatingActionButton fab;
@@ -74,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.setOnInfoWindowClickListener(this);
         map.setOnCameraChangeListener(this);
 
-        String locationProvider = locationManager.getBestProvider(new Criteria(), true);
+        locationProvider = locationManager.getBestProvider(new Criteria(), true);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, FINE_LOCATION_REQUEST_CODE);
             //TODO: REQUEST PERMISSION - CONCERN RELEASE VERSION TARGET 16
             //requestPermissions(new String[]{"android.permission.ACCESS_FINE_LOCATION"},REQUEST_ACCESS_FINE_LOCATION);
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -84,13 +87,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Log.d(TAG,"Setting Map Location");
-        Location myLocation = locationManager.getLastKnownLocation(locationProvider);
-        double latitude = myLocation.getLatitude();
-        double longitude = myLocation.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-        map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        map.animateCamera(CameraUpdateFactory.zoomTo(16));
+        centerMapToUser();
+        loadAndSetGeoData();
     }
 
     private void addMarkersToMap(Tree[] trees) {
@@ -110,11 +108,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent detailIntent = new Intent(this, DetailActivity.class);
         String treeTame = marker.getTitle();
         LatLng location = marker.getPosition();
-        detailIntent.putExtra(EXTRA_LOCATION,location);
-        detailIntent.putExtra(EXTRA_TREETYPE,treeTame);
+        detailIntent.putExtra(EXTRA_LOCATION, location);
+        detailIntent.putExtra(EXTRA_TREETYPE, treeTame);
         startActivity(detailIntent);
     }
-
 
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
@@ -126,4 +123,46 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case FINE_LOCATION_REQUEST_CODE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    centerMapToUser();
+                } else {
+                    // permission denied, boo! Disable the
+                }
+                return;
+            }
+        }
+    }
+
+    private void loadAndSetGeoData() {
+        try {
+            GeoJsonLayer layer = new GeoJsonLayer(map, R.raw.orlando_city_limits, getApplicationContext());
+            int green = getResources().getColor(R.color.orlandoGreen);
+            int transparentGreen = getResources().getColor(R.color.orlandoGreenTransparent);
+            layer.getDefaultPolygonStyle().setStrokeColor(green);
+            layer.getDefaultPolygonStyle().setFillColor(transparentGreen);
+            layer.addLayerToMap();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void centerMapToUser() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+        LatLng currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
+    }
+
 }
