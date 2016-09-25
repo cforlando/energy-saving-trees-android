@@ -78,20 +78,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(latitude, longitude);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.animateCamera(CameraUpdateFactory.zoomTo(16));
-
-        TreeProvider provider = new TreeProvider(this);
-        provider.getTreeDescriptions(new TreeProvider.TreeProviderHandler<TreeDescription>() {
-            @Override
-            public void onComplete(boolean isSuccess, List<TreeDescription> result) {
-
-            }
-        });
-        provider.getTrees(new TreeProvider.TreeProviderHandler<Tree>() {
-            @Override
-            public void onComplete(boolean isSuccess, List<Tree> result) {
-
-            }
-        });
     }
 
     private void addMarkersToMap(Tree[] trees) {
