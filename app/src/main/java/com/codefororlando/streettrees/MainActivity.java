@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
+import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,6 +30,7 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
@@ -75,6 +78,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng latLng = new LatLng(latitude, longitude);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         map.animateCamera(CameraUpdateFactory.zoomTo(16));
+
+        TreeProvider provider = new TreeProvider(this);
+        provider.getTreeDescriptions(new TreeProvider.TreeProviderHandler<TreeDescription>() {
+            @Override
+            public void onComplete(boolean isSuccess, List<TreeDescription> result) {
+
+            }
+        });
+        provider.getTrees(new TreeProvider.TreeProviderHandler<Tree>() {
+            @Override
+            public void onComplete(boolean isSuccess, List<Tree> result) {
+
+            }
+        });
     }
 
     private void addMarkersToMap(Tree[] trees) {
@@ -105,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         try {
             SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
             VisibleRegion vr = map.getProjection().getVisibleRegion();
-            addMarkersToMap(provider.getVisibleTrees(vr));
+            addMarkersToMap(provider.getVisibleTrees(vr, 20));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

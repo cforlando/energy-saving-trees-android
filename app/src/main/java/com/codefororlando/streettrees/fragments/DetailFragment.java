@@ -50,15 +50,15 @@ public class DetailFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         TreeDescription treeDescription = activityListener.getTreeData();
 
-        ((TextView) layoutView.findViewById(R.id.treeHeight)).setText(treeDescription.getHeight());
+        ((TextView) layoutView.findViewById(R.id.treeHeight)).setText(treeDescription.getMinHeight());
         ((TextView) layoutView.findViewById(R.id.treeLeaf)).setText(treeDescription.getLeaf());
         ((TextView) layoutView.findViewById(R.id.treeShape)).setText(treeDescription.getShape());
-        ((TextView) layoutView.findViewById(R.id.treeWidth)).setText(treeDescription.getWidth());
+        ((TextView) layoutView.findViewById(R.id.treeWidth)).setText(treeDescription.getMinWidth());
         ((TextView) layoutView.findViewById(R.id.treeSunlight)).setText(treeDescription.getSunlight());
         ((TextView) layoutView.findViewById(R.id.treSoil)).setText(treeDescription.getSoil());
         ((TextView) layoutView.findViewById(R.id.treeMoisture)).setText(treeDescription.getMoisture());
         ((TextView) layoutView.findViewById(R.id.treeDescription)).setText(treeDescription.getDescription());
-        ((TextView) layoutView.findViewById(R.id.treeType)).setText(treeDescription.getTreeName());
+        ((TextView) layoutView.findViewById(R.id.treeType)).setText(treeDescription.getName());
     }
 
     public interface DetailListener{
