@@ -1,16 +1,18 @@
-package com.codefororlando.streettrees;
+package com.codefororlando.streettrees.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
+import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
@@ -32,7 +34,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
     private static final String TAG = "MAINACTIVITY";
@@ -43,10 +44,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final String EXTRA_LOCATION = "location";
     public static final String EXTRA_TREETYPE = "type";
 
+    public static final int DEFAULT_MARKER_LIMIT = 20;
+
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tree_map);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RequestTreeActivity.class);
+                startActivity(intent);
+            }
+        });
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -108,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         try {
             SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
             VisibleRegion vr = map.getProjection().getVisibleRegion();
-            addMarkersToMap(provider.getVisibleTrees(vr, 20));
+            addMarkersToMap(provider.getVisibleTrees(vr, DEFAULT_MARKER_LIMIT));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
