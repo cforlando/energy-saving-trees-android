@@ -30,6 +30,8 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
     ContactInfo contactInfo;
 
     FragmentListPager listPager;
+    private final int FRAGMENT_COUNT = 5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
     @Override
     public void next() {
         int currentItemIndex = listPager.getCurrentItem();
-        if(currentItemIndex < (5)) {
+        if(currentItemIndex < FRAGMENT_COUNT) {
             listPager.nextFragment(null);
         } else {
             finish();

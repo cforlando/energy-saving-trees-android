@@ -1,13 +1,24 @@
 package com.codefororlando.streettrees.api.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TreeDescription {
-    private String treeName;
+
+    private String name;
 
     private String description;
 
-    private String height;
+    @SerializedName("min_height_cm")
+    private String minHeight;
 
-    private String width;
+    @SerializedName("max_height_cm")
+    private String maxHeight;
+
+    @SerializedName("min_width_cm")
+    private String minWidth;
+
+    @SerializedName("max_width_cm")
+    private String maxWidth;
 
     private String shape;
 
@@ -17,14 +28,18 @@ public class TreeDescription {
 
     private String moisture;
 
+    @SerializedName("full_sun")
     private String sunlight;
 
-    public String getTreeName() {
-        return treeName;
+    @SerializedName("partial_sun")
+    private String partialSunlight;
+
+    public String getName() {
+        return name;
     }
 
-    public void setTreeName(String treeName) {
-        this.treeName = treeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -35,20 +50,20 @@ public class TreeDescription {
         this.description = description;
     }
 
-    public String getHeight() {
-        return height;
+    public String getMinHeight() {
+        return minHeight;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public void setMinHeight(String minHeight) {
+        this.minHeight = minHeight;
     }
 
-    public String getWidth() {
-        return width;
+    public String getMinWidth() {
+        return minWidth;
     }
 
-    public void setWidth(String width) {
-        this.width = width;
+    public void setMinWidth(String minWidth) {
+        this.minWidth = minWidth;
     }
 
     public String getShape() {

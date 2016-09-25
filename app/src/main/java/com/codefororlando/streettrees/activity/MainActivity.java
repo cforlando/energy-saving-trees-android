@@ -14,7 +14,9 @@ import android.view.View;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
+import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +29,10 @@ import com.google.android.gms.maps.model.VisibleRegion;
 
 import java.io.IOException;
 import java.text.ParseException;
-
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
@@ -38,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int REQUEST_ACCESS_FINE_LOCATION = 10001;
     public static final String EXTRA_LOCATION = "location";
     public static final String EXTRA_TREETYPE = "type";
+
+    public static final int DEFAULT_MARKER_LIMIT = 20;
 
     FloatingActionButton fab;
 
@@ -114,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         try {
             SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
             VisibleRegion vr = map.getProjection().getVisibleRegion();
-            addMarkersToMap(provider.getVisibleTrees(vr, 20));
+            addMarkersToMap(provider.getVisibleTrees(vr, DEFAULT_MARKER_LIMIT));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

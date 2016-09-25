@@ -71,18 +71,16 @@ public class TreeDescriptionProvider {
                 TreeDescriptionJsonModel[] trees = gson.fromJson(jsonString, TreeDescriptionJsonModel[].class);
                 for (TreeDescriptionJsonModel tree : trees) {
                     TreeDescription model = new TreeDescription();
-
-                    model.setTreeName(tree.Tree);
+                    model.setName(tree.Tree);
                     model.setDescription(tree.Description);
-                    model.setHeight(tree.Height);
-                    model.setWidth(tree.Width);
+                    model.setMinHeight(tree.Height);
+                    model.setMinWidth(tree.Width);
                     model.setLeaf(tree.Leaf);
                     model.setShape(tree.Shape);
                     model.setMoisture(tree.Moiture);
                     model.setSunlight(tree.Sunlight);
                     model.setSoil(tree.Soil);
-
-                    treeCache.put(model.getTreeName(), model);
+                    treeCache.put(model.getName(), model);
                 }
             }
         }).run();
