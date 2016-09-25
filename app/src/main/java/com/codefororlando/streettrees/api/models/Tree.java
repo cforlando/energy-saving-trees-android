@@ -1,6 +1,7 @@
 package com.codefororlando.streettrees.api.models;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -11,7 +12,10 @@ public class Tree {
 
     private LatLng location;
 
+    @SerializedName("tree_name")
     private String treeName;
+
+    private String savings;
 
     public Tree(){
 
