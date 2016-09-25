@@ -1,18 +1,14 @@
-package com.codefororlando.streettrees;
+package com.codefororlando.streettrees.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
 import com.codefororlando.streettrees.fragments.DetailFragment;
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.maps.model.LatLng;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 public class DetailActivity extends AppCompatActivity implements DetailFragment.DetailListener {
 

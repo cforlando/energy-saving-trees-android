@@ -71,7 +71,6 @@ public class TreeDescriptionProvider {
                 TreeDescriptionJsonModel[] trees = gson.fromJson(jsonString, TreeDescriptionJsonModel[].class);
                 for (TreeDescriptionJsonModel tree : trees) {
                     TreeDescription model = new TreeDescription();
-
                     model.setName(tree.Tree);
                     model.setDescription(tree.Description);
                     model.setMinHeight(tree.Height);
@@ -81,7 +80,6 @@ public class TreeDescriptionProvider {
                     model.setMoisture(tree.Moiture);
                     model.setSunlight(tree.Sunlight);
                     model.setSoil(tree.Soil);
-
                     treeCache.put(model.getName(), model);
                 }
             }
