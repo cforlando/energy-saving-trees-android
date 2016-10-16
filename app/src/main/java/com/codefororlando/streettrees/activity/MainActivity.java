@@ -1,11 +1,14 @@
 package com.codefororlando.streettrees.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +17,9 @@ import android.view.View;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
-import com.codefororlando.streettrees.api.models.TreeDescription;
-import com.codefororlando.streettrees.api.providers.SavedTreesProvider;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
+import com.codefororlando.streettrees.presenter.MapPresenter;
+import com.codefororlando.streettrees.view.MapView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,14 +30,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.VisibleRegion;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
+public class MainActivity extends AppCompatActivity implements MapView, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
     private static final String TAG = "MAINACTIVITY";
     private GoogleMap map;
@@ -47,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int DEFAULT_MARKER_LIMIT = 20;
 
     FloatingActionButton fab;
+
+    List<Tree> cachedTrees;
+
+    TreeProvider treeProvider;
+    MapPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +68,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        treeProvider = new TreeProvider(this);
+        presenter = new MapPresenter();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.attach(treeProvider, this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.detach();
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
@@ -76,12 +94,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         String locationProvider = locationManager.getBestProvider(new Criteria(), true);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //TODO: REQUEST PERMISSION - CONCERN RELEASE VERSION TARGET 16
-            //requestPermissions(new String[]{"android.permission.ACCESS_FINE_LOCATION"},REQUEST_ACCESS_FINE_LOCATION);
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            requestPermissions(new String[]{"android.permission.ACCESS_FINE_LOCATION"},REQUEST_ACCESS_FINE_LOCATION);
             return;
         }
         Log.d(TAG,"Setting Map Location");
@@ -90,14 +103,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         double longitude = myLocation.getLongitude();
         LatLng latLng = new LatLng(latitude, longitude);
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        map.animateCamera(CameraUpdateFactory.zoomTo(16));
-    }
+        map.animateCamera(CameraUpdateFactory.zoomTo(12));
 
-    private void addMarkersToMap(Tree[] trees) {
-        // Add a marker in Sydney and move the camera
-        for (Tree tree : trees) {
-            map.addMarker(new MarkerOptions().position(tree.getLocation()).title(tree.getTreeName()));
-        }
+        presenter.fetchTrees();
     }
 
     @Override
@@ -115,15 +123,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         startActivity(detailIntent);
     }
 
-
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
-        try {
-            SavedTreesProvider provider = SavedTreesProvider.getInstance(getApplicationContext());
-            VisibleRegion vr = map.getProjection().getVisibleRegion();
-            addMarkersToMap(provider.getVisibleTrees(vr, DEFAULT_MARKER_LIMIT));
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        updateMapWithTrees(cachedTrees);
+    }
+
+    @Override
+    public void updateMapWithTrees(List<Tree> trees) {
+        if(trees == null) {
+            return;
+        }
+
+        VisibleRegion vr = map.getProjection().getVisibleRegion();
+        List<Tree> visibleTrees = presenter.getVisibleTrees(vr, trees, DEFAULT_MARKER_LIMIT);
+        for (Tree tree : visibleTrees) {
+            map.addMarker(new MarkerOptions().position(tree.getLocation()).title(tree.getTreeName()));
+        }
+        cachedTrees = trees;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_ACCESS_FINE_LOCATION) {
+            onMapReady(map);
         }
     }
 }

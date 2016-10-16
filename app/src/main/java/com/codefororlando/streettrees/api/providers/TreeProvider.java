@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -18,9 +19,11 @@ import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.functions.Func0;
 
 /**
  * Created by johnli on 9/25/16.
@@ -74,6 +77,31 @@ public class TreeProvider {
             });
     }
 
+
+    private List<Tree> getTrees() throws IOException {
+        Call<List<Tree>> getTreesTransaction = service.getTrees();
+        Response<List<Tree>> treeResponse = null;
+        treeResponse = getTreesTransaction.execute();
+        if(treeResponse.body() == null) {
+            return null;
+        }
+        return treeResponse.body();
+    }
+
+    public Observable<List<Tree>> getTreesObservable() {
+        return Observable.defer(new Func0<Observable<List<Tree>>>() {
+            @Override
+            public Observable<List<Tree>> call() {
+                try {
+                    return Observable.just(getTrees());
+                } catch (IOException e) {
+                    return Observable.error(e);
+                }
+            }
+
+
+        });
+    }
 
     public void getTreeDescriptions(final TreeProviderHandler<TreeDescription> handler) {
         Call<List<TreeDescription>> getTreesTransaction = service.getTreeDescriptions();
