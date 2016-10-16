@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="tree_images">
+        <item>@drawable/cfo_elm</item>
+        <item>@drawable/cfo_chinese_pistache</item>
+        <item>@drawable/cfo_dahoon_holly</item>
+        <item>@drawable/cfo_eagleston_holly</item>
+        <item>@drawable/cfo_japanese_blueberry</item>
+        <item>@drawable/cfo_live_oak</item>
+        <item>@drawable/cfo_magnolia</item>
+        <item>@drawable/cfo_myrtle</item>
+        <item>@drawable/cfo_nuttal_oak</item>
+        <item>@drawable/cfo_pink_trumpet</item>
+        <item>@drawable/cfo_tulip_popular</item>
+        <item>@drawable/cfo_yaupon_holly</item>
+        <item>@drawable/cfo_eagleston_holly</item>
+        <item>@drawable/cfo_yellow_trumpet</item>
+    </array>
+
+</resources>
