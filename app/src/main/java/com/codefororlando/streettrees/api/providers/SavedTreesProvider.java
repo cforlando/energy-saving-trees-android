@@ -42,32 +42,6 @@ public class SavedTreesProvider {
         PopulateCache(context);
     }
 
-    public Tree[] getVisibleTrees(final VisibleRegion region, int limit) {
-        // TODO: When the API gets fixed, call the API in addition to using the internal cache
-        // TODO: Find a better data structure than just iterating over a list
-        // TODO: Use an AsyncTask
-        List<Tree> trees = new ArrayList<>();
-
-        int count = 0;
-        for (Map.Entry<LatLng, Tree> entry : treeCache.entrySet()) {
-            if(count >= limit) {
-                break;
-            }
-
-            LatLng loc = entry.getKey();
-            Tree tree = entry.getValue();
-            if (region.latLngBounds.contains(loc)) {
-                trees.add(tree);
-                count++;
-            }
-        }
-        return trees.toArray(new Tree[0]);
-    }
-
-//    public Tree getTreeDetails(int orderId) {
-//
-//    }
-
     private void PopulateCache(Context context) throws IOException, ParseException {
         InputStream is = context.getResources().openRawResource(R.raw.data);
         Writer writer = new StringWriter();

@@ -21,9 +21,8 @@ public class LatLngDeserializer implements JsonDeserializer<LatLng> {
 
         JsonObject jobject = json.getAsJsonObject();
         JsonArray jarr = jobject.get("coordinates").getAsJsonArray();
-        double lng =jarr.get(0).getAsDouble();
-        double lat =jarr.get(1).getAsDouble();
-
+        double lng =jarr.get(1).getAsDouble();
+        double lat =jarr.get(0).getAsDouble();
         return new LatLng(lng, lat);
     }
 }
