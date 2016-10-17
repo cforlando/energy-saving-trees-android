@@ -24,14 +24,13 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
         ContactInfoFragment.ContactInfoListener,
         RequestReviewFragment.ReviewFragmentDelegate {
 
-    List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
+    private static List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
 
     Address address;
     ContactInfo contactInfo;
 
-    FragmentListPager listPager;
+    private FragmentListPager listPager;
     private final int FRAGMENT_COUNT = 5;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
         pagerFragments.add(new FragmentListPager.Entry(ContactInfoFragment.class));
         pagerFragments.add(new FragmentListPager.Entry(RequestReviewFragment.class));
         pagerFragments.add(new FragmentListPager.Entry(ConfirmRequestFragment.class));
-
         listPager = new FragmentListPager(getSupportFragmentManager(), android.R.id.content, pagerFragments, null);
     }
 
@@ -63,7 +61,7 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
     @Override
     public void next() {
         int currentItemIndex = listPager.getCurrentItem();
-        if(currentItemIndex < FRAGMENT_COUNT) {
+        if (currentItemIndex < FRAGMENT_COUNT) {
             listPager.nextFragment(null);
         } else {
             finish();
@@ -78,7 +76,7 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
     @Override
     public void previous() {
         int currentItemIndex = listPager.getCurrentItem();
-        if(currentItemIndex > 0 ) {
+        if (currentItemIndex > 0) {
             listPager.previousFragment();
         } else {
             finish();
