@@ -39,7 +39,7 @@ public class ImageViewPagerAdapter extends PagerAdapter{
     }
 
     public void setImages(Resources res, int imageArrResId) {
-        TypedArray typedArray = res.obtainTypedArray(R.array.tree_images);
+        TypedArray typedArray = res.obtainTypedArray(imageArrResId);
         int count = res.getIntArray(imageArrResId).length;  //HACK, didn't find a better way to get length
         imageResIds = new int[count];
         for(int i = 0; i < count; i++) {

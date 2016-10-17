@@ -10,4 +10,10 @@
     <string name="sunlightlabel">Sunlight:</string>
     <string name="soillabel">Soil:</string>
     <string name="title_activity_request_tree">RequestTreeActivity</string>
+    <string name="select_tree_fragment_title">Select a Tree</string>
+    <string name="request_intro_fragment_title">Apply for a Tree</string>
+    <string name="request_review_fragment_title">Review</string>
+    <string name="contact_info_fragment_title">Contact Info</string>
+    <string name="confirm_request_fragment_title">Confirmation</string>
+    <string name="address_form_fragment_title">Address</string>
 </resources>

@@ -26,11 +26,10 @@ public class ContactInfoFragment extends PageFragment {
 
     ContactInfoListener contactInfoListener;
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().setTitle("Contact Info");
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.contact_info_fragment_title));
     }
 
     @Nullable
@@ -77,7 +76,6 @@ public class ContactInfoFragment extends PageFragment {
                     + " must implement ContactInfoListener");
         }
     }
-
 
     public interface ContactInfoListener {
         void onFormFilled(ContactInfo contactInfo);

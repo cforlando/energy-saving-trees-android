@@ -18,17 +18,11 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class SelectTreeFragment extends PageFragment {
 
+    private static final String PAGER_INDEX_KEY = "PAGER_INDEX_KEY";
+
     Button nextButton;
     ViewPager pager;
     ImageViewPagerAdapter adapter;
-
-    int[] imageResIds = {R.drawable.cfo_elm, R.drawable.cfo_chinese_pistache,
-            R.drawable.cfo_dahoon_holly, R.drawable.cfo_eagleston_holly,
-            R.drawable.cfo_japanese_blueberry, R.drawable.cfo_live_oak,
-            R.drawable.cfo_magnolia, R.drawable.cfo_myrtle, R.drawable.cfo_nuttal_oak,
-            R.drawable.cfo_pink_trumpet, R.drawable.cfo_tulip_popular, R.drawable.cfo_yaupon_holly,
-            R.drawable.cfo_eagleston_holly, R.drawable.cfo_yellow_trumpet};
-    private TypedArray img;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,11 +34,15 @@ public class SelectTreeFragment extends PageFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_select, container, false);
-        bindUi(view);
+        int pageIndex = 0;
+        if(savedInstanceState != null) {
+            pageIndex = savedInstanceState.getInt(PAGER_INDEX_KEY, 0);
+        }
+        bindUi(view, pageIndex);
         return  view;
     }
 
-    void bindUi(View view) {
+    void bindUi(View view, int pageIndex) {
         nextButton = (Button) view.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +54,19 @@ public class SelectTreeFragment extends PageFragment {
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(1);
         adapter.setImages(getResources(), R.array.tree_images);
+        pager.setCurrentItem(pageIndex);
+    }
 
-        img = getResources().obtainTypedArray(R.array.tree_images);
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(PAGER_INDEX_KEY, pager.getCurrentItem());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.select_tree_fragment_title));
     }
 
     void nextFragment() {
