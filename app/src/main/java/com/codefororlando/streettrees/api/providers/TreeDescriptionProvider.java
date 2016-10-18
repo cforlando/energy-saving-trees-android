@@ -22,28 +22,19 @@ import java.util.Map;
 public class TreeDescriptionProvider {
     private Map<String, TreeDescription> treeCache;
 
-    private static TreeDescriptionProvider instance;
-
-    public static TreeDescriptionProvider getInstance(Context context) throws IOException, ParseException {
-        if (instance == null) {
-            instance = new TreeDescriptionProvider(context);
-        }
-        return instance;
-    }
-
-    private TreeDescriptionProvider(Context context) throws IOException, ParseException {
+    public TreeDescriptionProvider(Context context) {
         treeCache = new HashMap<>();
         populateCache(context);
     }
 
-    public TreeDescription getTreeDescription(String description) {
-        if (!treeCache.containsKey(description)) {
+    public TreeDescription getTreeDescription(String name) {
+        if (!treeCache.containsKey(name)) {
             throw new IllegalArgumentException("Tree name not in the cache");
         }
-        return treeCache.get(description);
+        return treeCache.get(name);
     }
 
-    private void populateCache(final Context context) throws IOException, ParseException {
+    private void populateCache(final Context context) {
         new Thread(new Runnable() {
             @Override
             public void run() {

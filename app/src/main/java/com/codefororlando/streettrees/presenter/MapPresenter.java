@@ -18,6 +18,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by johnli on 10/16/16.
  */
+
 public class MapPresenter {
 
     MapView view;
