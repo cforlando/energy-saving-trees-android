@@ -1,13 +1,16 @@
 package com.codefororlando.streettrees.fragments.request_tree;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.view.ImageViewPagerAdapter;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**
@@ -15,17 +18,31 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class SelectTreeFragment extends PageFragment {
 
+    private static final String PAGER_INDEX_KEY = "PAGER_INDEX_KEY";
+
     Button nextButton;
+    ViewPager pager;
+    ImageViewPagerAdapter adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new ImageViewPagerAdapter(getActivity());
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_select, container, false);
-        bindUi(view);
+        int pageIndex = 0;
+        if(savedInstanceState != null) {
+            pageIndex = savedInstanceState.getInt(PAGER_INDEX_KEY, 0);
+        }
+        bindUi(view, pageIndex);
         return  view;
     }
 
-    void bindUi(View view) {
+    void bindUi(View view, int pageIndex) {
         nextButton = (Button) view.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +50,23 @@ public class SelectTreeFragment extends PageFragment {
                 nextFragment();
             }
         });
+        pager = (ViewPager) view.findViewById(R.id.view_pager);
+        pager.setAdapter(adapter);
+        pager.setOffscreenPageLimit(1);
+        adapter.setImages(getResources(), R.array.tree_images);
+        pager.setCurrentItem(pageIndex);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(PAGER_INDEX_KEY, pager.getCurrentItem());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.select_tree_fragment_title));
     }
 
     void nextFragment() {

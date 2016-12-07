@@ -12,6 +12,9 @@ import java.util.List;
  * This is a utility class that will iterate through a list of fragments,
  * replacing the specified container view with a fragment as it iterates.
  */
+
+//TODO this handles configuration changes poorly
+//    Fix and undo portrait activity constraint in the android manifest.
 public class FragmentListPager {
 
     /**
@@ -117,14 +120,16 @@ public class FragmentListPager {
                         .setCustomAnimations(R.anim.slide_in_left,
                                 R.anim.slide_out_right)
                         .replace(mContainerViewId, fragment)
-                        .commitAllowingStateLoss();
+                        .addToBackStack(null)
+                        .commit();
             } else {
                 mFragmentManager
                         .beginTransaction()
                         .setCustomAnimations(R.anim.slide_in_right,
                                 R.anim.slide_out_left)
                         .replace(mContainerViewId, fragment)
-                        .commitAllowingStateLoss();
+                        .addToBackStack(null)
+                        .commit();
             }
 
             mCurrentItem = position;

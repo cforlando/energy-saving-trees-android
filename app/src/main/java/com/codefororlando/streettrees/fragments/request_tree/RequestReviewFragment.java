@@ -28,9 +28,9 @@ public class RequestReviewFragment extends PageFragment {
     ReviewFragmentDelegate delegate;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().setTitle("Review");
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.request_review_fragment_title));
     }
 
     @Nullable
@@ -84,7 +84,6 @@ public class RequestReviewFragment extends PageFragment {
                     + " must implement ReviewFragmentDelegate");
         }
     }
-
 
     public interface ReviewFragmentDelegate {
         Address getAddress();

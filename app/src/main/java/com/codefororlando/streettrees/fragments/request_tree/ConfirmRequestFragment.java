@@ -19,9 +19,9 @@ public class ConfirmRequestFragment extends PageFragment {
     Button nextButton;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().setTitle("Confirmation");
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.confirm_request_fragment_title));
     }
 
     @Nullable
@@ -41,7 +41,4 @@ public class ConfirmRequestFragment extends PageFragment {
             }
         });
     }
-
-
-
 }

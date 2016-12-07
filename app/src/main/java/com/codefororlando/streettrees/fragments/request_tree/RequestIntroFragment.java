@@ -30,4 +30,10 @@ public class RequestIntroFragment extends PageFragment {
         });
         return  view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.request_intro_fragment_title));
+    }
 }

@@ -28,7 +28,7 @@ import rx.functions.Func0;
 /**
  * Created by johnli on 9/25/16.
  */
-public class TreeProvider {
+public class TreeProvider implements TreeProviderInterface {
     private static final String BASE_URL = "https://brigades.opendatanetwork.com/resource/";
     private static final int CONNECT_TIMEOUT = 15;
     private static final int WRITE_TIMEOUT = 30;
@@ -61,7 +61,7 @@ public class TreeProvider {
         service = retrofit.create(TreeAPIService.class);
     }
 
-    public void getTrees(final TreeProviderHandler<Tree> handler) {
+    public void getTrees(final TreeProviderResultHandler<Tree> handler) {
         Call<List<Tree>> getTreesTransaction = service.getTrees();
         getTreesTransaction.enqueue(new Callback<List<Tree>>() {
                 @Override
@@ -76,7 +76,6 @@ public class TreeProvider {
                 }
             });
     }
-
 
     private List<Tree> getTrees() throws IOException {
         Call<List<Tree>> getTreesTransaction = service.getTrees();
@@ -101,25 +100,5 @@ public class TreeProvider {
 
 
         });
-    }
-
-    public void getTreeDescriptions(final TreeProviderHandler<TreeDescription> handler) {
-        Call<List<TreeDescription>> getTreesTransaction = service.getTreeDescriptions();
-        getTreesTransaction.enqueue(new Callback<List<TreeDescription>>() {
-            @Override
-            public void onResponse(Call<List<TreeDescription>> call, Response<List<TreeDescription>> response) {
-                List<TreeDescription> descriptions = response.body();
-                handler.onComplete(true, descriptions);
-            }
-
-            @Override
-            public void onFailure(Call<List<TreeDescription>> call, Throwable t) {
-                handler.onComplete(false, null);
-            }
-        });
-    }
-
-    public interface TreeProviderHandler<T> {
-        void onComplete(boolean isSuccess, List<T> result);
     }
 }

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.TreeApplication;
 import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.presenter.MapPresenter;
@@ -34,6 +35,8 @@ import org.json.JSONException;
 import java.util.List;
 import java.io.IOException;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements MapView, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap map;
@@ -50,13 +53,18 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
 
     List<Tree> cachedTrees;
 
+    @Inject
     TreeProvider treeProvider;
+
     MapPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tree_map);
+
+        ((TreeApplication)getApplication()).getTreeProviderComponent().inject(this);
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
         mapFragment.getMapAsync(this);
 
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        treeProvider = new TreeProvider(this);
         presenter = new MapPresenter();
     }
 
@@ -176,8 +183,10 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
             return;
         }
         Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-        LatLng currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
+        if(lastKnownLocation != null) {
+            LatLng currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
+        }
     }
 
 }

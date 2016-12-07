@@ -19,8 +19,6 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class AddressFormFragment extends PageFragment {
 
-    //TODO override onSavedInstance
-
     Button nextButton;
     EditText streetAddressField;
     EditText streetAddressExtraField;
@@ -30,11 +28,15 @@ public class AddressFormFragment extends PageFragment {
 
     AddressFormListener addressFormListener;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("Address");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(getString(R.string.address_form_fragment_title));
     }
 
     @Nullable

@@ -5,16 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.TreeApplication;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
 import com.codefororlando.streettrees.fragments.DetailFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import javax.inject.Inject;
+
 public class DetailActivity extends AppCompatActivity implements DetailFragment.DetailListener {
 
     final String TAG = "DETAILACTIVITY";
 
-    private TreeDescription treeDescription;
+    @Inject
+    TreeDescriptionProvider treeDescriptionProvider;
     private LatLng location;
     private String treeType;
 
@@ -23,7 +27,9 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        if(savedInstanceState == null) {
+        ((TreeApplication) getApplication()).getTreeProviderComponent().inject(this);
+
+        if (savedInstanceState == null) {
             DetailFragment frag = DetailFragment.newInstance();
             getFragmentManager().beginTransaction()
                     .replace(R.id.detailContainer, frag, DetailFragment.TAG)
@@ -35,18 +41,13 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         treeType = loadingIntent.getStringExtra(MainActivity.EXTRA_TREETYPE);
     }
 
-    private void loadTreeData(LatLng _location, String _treeType){
+    private void loadTreeData(LatLng _location, String _treeType) {
 
     }
 
     @Override
     public TreeDescription getTreeData() {
-        try {
-            TreeDescriptionProvider treeDescriptionProvider = TreeDescriptionProvider.getInstance(getApplicationContext());
-            treeDescription = treeDescriptionProvider.getTreeDescription(treeType);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return treeDescription;
+        return treeDescriptionProvider.getTreeDescription(treeType);
+
     }
 }
