@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
@@ -22,13 +24,117 @@
         android:layout_height="320dp"
         />
 
+
+    <include layout="@layout/divider_gray" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:textSize="18dp"
-        android:textAlignment="center"
+        android:gravity="left"
         android:text="Description"
         />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:gravity="left"
+        android:text="Enter Description here"
+        />
+    
+    <include layout="@layout/divider_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textSize="18dp"
+        android:gravity="left"
+        android:text="Details" />
+
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:columnCount="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/secondary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/secondary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/primary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 Months"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/primary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Size"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/secondary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Location"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/secondary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/primary_text"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/city_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orlando, FL"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/primary_text"
+            app:layout_columnWeight="1" />
+
+    </android.support.v7.widget.GridLayout>
+
 
     <Button
         android:id="@+id/next_button"

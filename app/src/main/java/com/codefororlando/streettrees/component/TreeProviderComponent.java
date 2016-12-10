@@ -2,6 +2,7 @@ package com.codefororlando.streettrees.component;
 
 import com.codefororlando.streettrees.activity.DetailActivity;
 import com.codefororlando.streettrees.activity.MainActivity;
+import com.codefororlando.streettrees.requesttree.selecttree.SelectTreePresenter;
 
 import javax.inject.Singleton;
 
@@ -16,4 +17,5 @@ import dagger.Component;
 public interface TreeProviderComponent {
     void inject(MainActivity target);
     void inject(DetailActivity target);
+    void inject(SelectTreePresenter target);
 }

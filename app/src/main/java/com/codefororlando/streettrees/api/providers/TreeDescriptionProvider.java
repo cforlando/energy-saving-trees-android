@@ -16,7 +16,9 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TreeDescriptionProvider {
@@ -34,6 +36,9 @@ public class TreeDescriptionProvider {
         return treeCache.get(name);
     }
 
+    public List<TreeDescription> getAllTreeDescriptions() {
+        return new ArrayList<>(treeCache.values());
+    }
     private void populateCache(final Context context) {
         new Thread(new Runnable() {
             @Override

@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.fragments.request_tree;
+package com.codefororlando.streettrees.requesttree;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.view.BlurBuilder;
+import com.codefororlando.streettrees.util.BlurBuilder;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**

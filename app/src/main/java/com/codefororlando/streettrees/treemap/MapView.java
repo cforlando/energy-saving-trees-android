@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.view;
+package com.codefororlando.streettrees.treemap;
 
 import com.codefororlando.streettrees.api.models.Tree;
 

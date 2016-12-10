@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.DrawableRes;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.util.BitmapUtil;
+
+import java.util.List;
 
 /**
  * Created by johnli on 10/16/16.
@@ -51,6 +54,12 @@ public class ImageViewPagerAdapter extends PagerAdapter{
         typedArray.recycle();
         notifyDataSetChanged();
     }
+
+    public void setImages(int[] images) {
+        imageResIds = images;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
