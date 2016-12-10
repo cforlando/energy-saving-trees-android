@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.view;
+package com.codefororlando.streettrees.util;
 
 import android.annotation.TargetApi;
 import android.content.Context;

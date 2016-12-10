@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.TreeDescription;
-import com.codefororlando.streettrees.api.models.TreeDescriptionJsonModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,8 +14,9 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TreeDescriptionProvider {
@@ -34,6 +34,9 @@ public class TreeDescriptionProvider {
         return treeCache.get(name);
     }
 
+    public List<TreeDescription> getAllTreeDescriptions() {
+        return new ArrayList<>(treeCache.values());
+    }
     private void populateCache(final Context context) {
         new Thread(new Runnable() {
             @Override
@@ -59,19 +62,9 @@ public class TreeDescriptionProvider {
 
                 String jsonString = writer.toString();
                 Gson gson = new GsonBuilder().create();
-                TreeDescriptionJsonModel[] trees = gson.fromJson(jsonString, TreeDescriptionJsonModel[].class);
-                for (TreeDescriptionJsonModel tree : trees) {
-                    TreeDescription model = new TreeDescription();
-                    model.setName(tree.Tree);
-                    model.setDescription(tree.Description);
-                    model.setMinHeight(tree.Height);
-                    model.setMinWidth(tree.Width);
-                    model.setLeaf(tree.Leaf);
-                    model.setShape(tree.Shape);
-                    model.setMoisture(tree.Moiture);
-                    model.setSunlight(tree.Sunlight);
-                    model.setSoil(tree.Soil);
-                    treeCache.put(model.getName(), model);
+                TreeDescription[] trees = gson.fromJson(jsonString, TreeDescription[].class);
+                for (TreeDescription tree : trees) {
+                    treeCache.put(tree.getName(), tree);
                 }
             }
         }).run();

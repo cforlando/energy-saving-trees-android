@@ -105,4 +105,12 @@ public class TreeDescription {
     public void setSunlight(String sunlight) {
         this.sunlight = sunlight;
     }
+
+    public String getMaxHeight() {
+        return maxHeight;
+    }
+
+    public String getMaxWidth() {
+        return maxWidth;
+    }
 }

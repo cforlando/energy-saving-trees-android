@@ -1,11 +1,8 @@
-package com.codefororlando.streettrees.presenter;
-
-import android.util.Log;
+package com.codefororlando.streettrees.treemap;
 
 import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.util.TreeMapUtil;
-import com.codefororlando.streettrees.view.MapView;
 import com.google.android.gms.maps.model.VisibleRegion;
 
 import java.util.List;

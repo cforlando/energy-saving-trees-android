@@ -10,5 +10,6 @@
     <color name="orlandoGray">#58595B</color>
 
     <color name="request_form_text_color">@android:color/white</color>
-
+    <color name="primary_text">@android:color/white</color>
+    <color name="secondary_text">@android:color/white</color>
 </resources>

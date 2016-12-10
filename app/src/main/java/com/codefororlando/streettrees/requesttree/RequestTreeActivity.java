@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.activity;
+package com.codefororlando.streettrees.requesttree;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +7,7 @@ import android.view.MenuItem;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Address;
 import com.codefororlando.streettrees.api.models.ContactInfo;
-import com.codefororlando.streettrees.fragments.request_tree.AddressFormFragment;
-import com.codefororlando.streettrees.fragments.request_tree.ConfirmRequestFragment;
-import com.codefororlando.streettrees.fragments.request_tree.ContactInfoFragment;
-import com.codefororlando.streettrees.fragments.request_tree.RequestIntroFragment;
-import com.codefororlando.streettrees.fragments.request_tree.RequestReviewFragment;
-import com.codefororlando.streettrees.fragments.request_tree.SelectTreeFragment;
+import com.codefororlando.streettrees.requesttree.selecttree.SelectTreeFragment;
 import com.codefororlando.streettrees.view.FragmentListPager;
 import com.codefororlando.streettrees.view.PageFragment;
 
