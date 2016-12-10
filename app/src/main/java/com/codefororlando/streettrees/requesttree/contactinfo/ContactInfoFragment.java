@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.requesttree;
+package com.codefororlando.streettrees.requesttree.contactinfo;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,11 +8,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.ContactInfo;
@@ -22,7 +26,7 @@ import com.codefororlando.streettrees.view.PageFragment;
 /**
  * Created by johnli on 9/24/16.
  */
-public class ContactInfoFragment extends PageFragment {
+public class ContactInfoFragment extends PageFragment implements ContactInfoPresenter.ContactInfoView, EditText.OnEditorActionListener {
 
     Button nextButton;
     EditText nameField;
@@ -31,10 +35,19 @@ public class ContactInfoFragment extends PageFragment {
 
     ContactInfoListener contactInfoListener;
 
+    ContactInfoPresenter presenter;
+
     @Override
     public void onStart() {
         super.onStart();
         getActivity().setTitle(getString(R.string.contact_info_fragment_title));
+        presenter.attach(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.detach();
     }
 
     @Nullable
@@ -43,7 +56,8 @@ public class ContactInfoFragment extends PageFragment {
         View view = inflater.inflate(R.layout.request_tree_contact_info, container, false);
         bindUi(view);
         initBlurredBackground(view);
-        return  view;
+        presenter = new ContactInfoPresenter();
+        return view;
     }
 
     void bindUi(View view) {
@@ -51,11 +65,17 @@ public class ContactInfoFragment extends PageFragment {
         phoneNumberField = (EditText) view.findViewById(R.id.phone_number_field);
         emailField = (EditText) view.findViewById(R.id.email_field);
 
+        nameField.setOnEditorActionListener(this);
+        phoneNumberField.setOnEditorActionListener(this);
+        emailField.setOnEditorActionListener(this);
+
         nextButton = (Button) view.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextFragment();
+                if(presenter.canProceed()) {
+                    nextFragment();
+                }
             }
         });
     }
@@ -90,7 +110,40 @@ public class ContactInfoFragment extends PageFragment {
         }
     }
 
+    @Override
+    public void setNameError(String errorMsg) {
+        nameField.setError(errorMsg);
+    }
+
+    @Override
+    public void setEmailError(String errorMsg) {
+        emailField.setError(errorMsg);
+    }
+
+    @Override
+    public void setPhoneNumberError(String errorMsg) {
+        phoneNumberField.setError(errorMsg);
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        int textViewId = v.getId();
+        if (actionId == EditorInfo.IME_ACTION_NEXT) {
+            if (textViewId == nameField.getId()) {
+                return !presenter.validateName(nameField.getText().toString());
+            } else if (textViewId == phoneNumberField.getId()) {
+                return !presenter.validateNumber(phoneNumberField.getText().toString());
+            }
+        } else if(actionId == EditorInfo.IME_ACTION_DONE) {
+            if (textViewId == emailField.getId()) {
+                return !presenter.validateEmail(emailField.getText().toString());
+            }
+        }
+        return false;
+    }
+
     public interface ContactInfoListener {
         void onFormFilled(ContactInfo contactInfo);
     }
+
 }

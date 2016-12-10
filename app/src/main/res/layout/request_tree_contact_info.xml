@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:hint="Name"
         android:layout_margin="12dp"
+        android:inputType="textPersonName"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -17,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="Phone Number"
+        android:inputType="phone"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -25,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:imeOptions="actionDone"
         />
 
     <View
