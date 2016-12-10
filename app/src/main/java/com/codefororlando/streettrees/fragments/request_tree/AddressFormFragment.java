@@ -2,6 +2,10 @@ package com.codefororlando.streettrees.fragments.request_tree;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +16,7 @@ import android.widget.EditText;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Address;
+import com.codefororlando.streettrees.view.BlurBuilder;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**
@@ -44,6 +49,7 @@ public class AddressFormFragment extends PageFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_address, container, false);
         bindUi(view);
+        initBlurredBackground(view);
         return  view;
     }
 
@@ -61,6 +67,13 @@ public class AddressFormFragment extends PageFragment {
                 nextFragment();
             }
         });
+    }
+
+    void initBlurredBackground(View view) {
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_tall_trees);
+        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
+        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
+        view.setBackground(d);
     }
 
     void nextFragment() {
