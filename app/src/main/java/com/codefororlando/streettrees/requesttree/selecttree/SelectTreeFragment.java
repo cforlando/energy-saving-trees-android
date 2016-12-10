@@ -126,6 +126,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
         descriptionLabel.setText(tree.getDescription());
         widthLabel.setText(width);
         heightLabel.setText(height);
+        leafLabel.setText(tree.getLeaf());
         shapeLabel.setText(tree.getShape());
     }
 
