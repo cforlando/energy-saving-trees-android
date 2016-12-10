@@ -2,11 +2,13 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFFFFF</color>
 
     <color name="orlandoGreen">#87BA65</color>
     <color name="orlandoGreenTransparent">#3387BA65</color>
     <color name="orlandoBlue">#1F293F</color>
     <color name="orlandoGray">#58595B</color>
+
+    <color name="request_form_text_color">@android:color/white</color>
 
 </resources>

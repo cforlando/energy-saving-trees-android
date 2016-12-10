@@ -6,11 +6,25 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="editTextStyle">@style/RequestFormEditTextStyle</item>
+    </style>
+
+    <style name="RequestFormTheme" parent="AppTheme">
+        <item name="editTextStyle">@style/RequestFormEditTextStyle</item>
+        <item name="android:textViewStyle">@style/RequestFormTextStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="RequestFormEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -28,4 +42,16 @@
         <item name="rippleColor">@android:color/white</item>
     </style>
 
+    <style name="RequestFormTextStyle">
+        <item name="android:textColor">@color/request_form_text_color</item>
+    </style>
+
+    <style name="RequestFormAcceptButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/orlandoGreen</item>
+    </style>
 </resources>
