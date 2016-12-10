@@ -1,146 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select a Tree"
-        android:textSize="32dp"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        />
+        android:orientation="vertical">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:paddingLeft="72dp"
-        android:paddingRight="72dp"
-        android:clipToPadding="false"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:clipToPadding="false"
+            android:paddingLeft="72dp"
+            android:paddingRight="72dp" />
 
 
-    <include layout="@layout/divider_gray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:textSize="18dp"
-        android:gravity="left"
-        android:text="Description"
-        />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:gravity="left"
-        android:text="Enter Description here"
-        />
-    
-    <include layout="@layout/divider_gray" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:textSize="18dp"
-        android:gravity="left"
-        android:text="Details" />
-
-
-    <android.support.v7.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:columnCount="2">
+        <include layout="@layout/divider_gray" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/secondary_text"
-            app:layout_columnWeight="1" />
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="Description"
+            android:textSize="18dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Age"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/secondary_text"
-            app:layout_columnWeight="1" />
+            android:gravity="left"
+            android:padding="8dp"
+            android:text="Enter Description here"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <include layout="@layout/divider_gray" />
 
         <TextView
-            android:id="@+id/gender"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Male"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text"
-            app:layout_columnWeight="1" />
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="Details"
+            android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/age"
-            android:layout_width="wrap_content"
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4 Months"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text"
-            app:layout_columnWeight="1" />
+            android:padding="8dp"
+            app:columnCount="2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Size"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/secondary_text"
-            app:layout_columnWeight="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Width"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"
+                app:layout_columnWeight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Location"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/secondary_text"
-            app:layout_columnWeight="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leaf"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"
+                app:layout_columnWeight="1" />
 
-        <TextView
-            android:id="@+id/size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medium"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text"
-            app:layout_columnWeight="1" />
+            <TextView
+                android:id="@+id/width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1ft-4.4ft"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text"
+                app:layout_columnWeight="1" />
 
-        <TextView
-            android:id="@+id/city_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Orlando, FL"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="@color/primary_text"
-            app:layout_columnWeight="1" />
+            <TextView
+                android:id="@+id/leaf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deciduous"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text"
+                app:layout_columnWeight="1" />
 
-    </android.support.v7.widget.GridLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Height"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"
+                app:layout_columnWeight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Shape"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"
+                app:layout_columnWeight="1" />
+
+            <TextView
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5ft-12ft"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text"
+                app:layout_columnWeight="1" />
+
+            <TextView
+                android:id="@+id/shape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="round"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/primary_text"
+                app:layout_columnWeight="1" />
+
+        </android.support.v7.widget.GridLayout>
 
 
-    <Button
-        android:id="@+id/next_button"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/request_form_accept_btn_height"
-        android:text="Next"
-        style="@style/RequestFormAcceptButton"
-        />
-</LinearLayout>
+        <Button
+            android:id="@+id/next_button"
+            style="@style/RequestFormAcceptButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/request_form_accept_btn_height"
+            android:text="Next" />
+    </LinearLayout>
+</ScrollView>

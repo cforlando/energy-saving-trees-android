@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.view.ImageViewPagerAdapter;
 import com.codefororlando.streettrees.view.PageFragment;
 
@@ -29,6 +30,10 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     ImageViewPagerAdapter adapter;
 
     TextView descriptionLabel;
+    TextView widthLabel;
+    TextView heightLabel;
+    TextView leafLabel;
+    TextView shapeLabel;
 
     SelectTreePresenter presenter;
     private int pageIndex;
@@ -82,10 +87,15 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
             imageResIds[i] = treeViewModels.get(i).getDrawableResId();
         }
         adapter.setImages(imageResIds);
+        onPageSelected(0);
     }
 
     void bindUi(View view) {
         descriptionLabel = (TextView) view.findViewById(R.id.description);
+        widthLabel = (TextView) view.findViewById(R.id.width);
+        heightLabel = (TextView) view.findViewById(R.id.height);
+        leafLabel = (TextView) view.findViewById(R.id.leaf);
+        shapeLabel = (TextView) view.findViewById(R.id.shape);
 
         nextButton = (Button) view.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +104,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
                 nextFragment();
             }
         });
+
         pager = (ViewPager) view.findViewById(R.id.view_pager);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(this);
@@ -110,7 +121,13 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     }
 
     void bindTreeViewModel(TreeViewModel viewModel) {
-        descriptionLabel.setText(viewModel.getTree().getDescription());
+        TreeDescription tree = viewModel.getTree();
+        descriptionLabel.setText(tree.getDescription());
+        String width = String.format("%s - %s",tree.getMinWidth(), tree.getMaxWidth());
+        String height = String.format("%s - %s",tree.getMinHeight(), tree.getMaxHeight());
+        widthLabel.setText(width);
+        heightLabel.setText(height);
+        shapeLabel.setText(tree.getShape());
     }
 
     @Override
