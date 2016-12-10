@@ -29,11 +29,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     ViewPager pager;
     ImageViewPagerAdapter adapter;
 
-    TextView descriptionLabel;
-    TextView widthLabel;
-    TextView heightLabel;
-    TextView leafLabel;
-    TextView shapeLabel;
+    TextView treeNameLabel, descriptionLabel, widthLabel, heightLabel, leafLabel, shapeLabel;
 
     SelectTreePresenter presenter;
     private int pageIndex;
@@ -91,6 +87,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     }
 
     void bindUi(View view) {
+        treeNameLabel = (TextView) view.findViewById(R.id.tree_name);
         descriptionLabel = (TextView) view.findViewById(R.id.description);
         widthLabel = (TextView) view.findViewById(R.id.width);
         heightLabel = (TextView) view.findViewById(R.id.height);
@@ -122,9 +119,11 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
 
     void bindTreeViewModel(TreeViewModel viewModel) {
         TreeDescription tree = viewModel.getTree();
-        descriptionLabel.setText(tree.getDescription());
         String width = String.format("%s - %s",tree.getMinWidth(), tree.getMaxWidth());
         String height = String.format("%s - %s",tree.getMinHeight(), tree.getMaxHeight());
+
+        treeNameLabel.setText(tree.getName());
+        descriptionLabel.setText(tree.getDescription());
         widthLabel.setText(width);
         heightLabel.setText(height);
         shapeLabel.setText(tree.getShape());
