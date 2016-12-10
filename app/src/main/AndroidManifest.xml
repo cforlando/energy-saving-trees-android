@@ -41,7 +41,8 @@
         <activity
             android:name=".activity.RequestTreeActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_request_tree"></activity>
+            android:label="@string/title_activity_request_tree"
+            android:theme="@style/RequestFormTheme"/>
     </application>
 
 </manifest>
