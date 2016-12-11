@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:hint="Street Address"
         android:layout_margin="12dp"
+        android:inputType="textPostalAddress"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -17,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="Address Line 2"
+        android:inputType="textPostalAddress"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -25,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="City"
+        android:inputType="textPostalAddress"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -33,6 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="State"
+        android:inputType="textPostalAddress"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -41,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="Zip Code"
+        android:inputType="number"
         />
 
     <View
