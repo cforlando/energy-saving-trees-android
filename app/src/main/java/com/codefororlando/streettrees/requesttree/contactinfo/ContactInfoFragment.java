@@ -73,6 +73,9 @@ public class ContactInfoFragment extends PageFragment implements ContactInfoPres
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                presenter.validateName(nameField.getText().toString());
+                presenter.validateNumber(phoneNumberField.getText().toString());
+                presenter.validateEmail(emailField.getText().toString());
                 if(presenter.canProceed()) {
                     nextFragment();
                 }

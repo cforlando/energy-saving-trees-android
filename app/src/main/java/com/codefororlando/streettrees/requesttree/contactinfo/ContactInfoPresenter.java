@@ -56,7 +56,6 @@ public class ContactInfoPresenter {
     }
 
     public interface ContactInfoView {
-
         void setNameError(String errorMsg);
         void setEmailError(String errorMsg);
         void setPhoneNumberError(String errorMsg);
