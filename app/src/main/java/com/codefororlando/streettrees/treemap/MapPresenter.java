@@ -59,4 +59,8 @@ public class MapPresenter {
     public List<Tree> getVisibleTrees(VisibleRegion vr, List<Tree> trees, int limit) {
         return TreeMapUtil.getVisibleTrees(vr, trees, limit);
     }
+
+    public interface MapView {
+        void updateMapWithTrees(List<Tree> trees);
+    }
 }

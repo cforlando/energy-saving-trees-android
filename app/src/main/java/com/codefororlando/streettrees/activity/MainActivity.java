@@ -20,7 +20,6 @@ import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.requesttree.RequestTreeActivity;
 import com.codefororlando.streettrees.treemap.MapPresenter;
-import com.codefororlando.streettrees.treemap.MapView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,7 +38,9 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MapView, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
+public class MainActivity extends AppCompatActivity implements MapPresenter.MapView,
+        OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap map;
     private LocationManager locationManager;
