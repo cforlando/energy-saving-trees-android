@@ -18,7 +18,7 @@ import com.codefororlando.streettrees.view.PageFragment;
 /**
  * Created by johnli on 9/24/16.
  */
-public class ConfirmRequestFragment extends PageFragment {
+public class ConfirmRequestFragment extends BlurredBackgroundFragment {
 
     private Button nextButton;
 
@@ -33,15 +33,8 @@ public class ConfirmRequestFragment extends PageFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_confirmation, container, false);
         bindView(view);
-        initBlurredBackground(view);
+        initBlurredBackground(view, R.drawable.bg_lake_trees, 25f, .05f);
         return view;
-    }
-
-    private void initBlurredBackground(View view) {
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_lake_trees);
-        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
-        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
-        view.setBackground(d);
     }
 
     private void bindView(View view) {

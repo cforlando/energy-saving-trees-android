@@ -22,7 +22,7 @@ import com.codefororlando.streettrees.view.PageFragment;
 /**
  * Created by johnli on 9/24/16.
  */
-public class AddressFormFragment extends PageFragment {
+public class AddressFormFragment extends BlurredBackgroundFragment {
 
     private Button nextButton;
     private EditText streetAddressField;
@@ -44,7 +44,7 @@ public class AddressFormFragment extends PageFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_address, container, false);
         bindUi(view);
-        initBlurredBackground(view);
+        initBlurredBackground(view, R.drawable.bg_tall_trees, 25f, .05f);
         return view;
     }
 
@@ -62,13 +62,6 @@ public class AddressFormFragment extends PageFragment {
                 nextFragment();
             }
         });
-    }
-
-    private void initBlurredBackground(View view) {
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_tall_trees);
-        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
-        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
-        view.setBackground(d);
     }
 
     private void nextFragment() {

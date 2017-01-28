@@ -23,7 +23,7 @@ import com.codefororlando.streettrees.view.PageFragment;
 /**
  * Created by johnli on 9/24/16.
  */
-public class RequestReviewFragment extends PageFragment {
+public class RequestReviewFragment extends BlurredBackgroundFragment {
 
 
     Button nextButton;
@@ -44,7 +44,7 @@ public class RequestReviewFragment extends PageFragment {
         View view = inflater.inflate(R.layout.request_tree_review, container, false);
         bindView(view);
         updateUi();
-        initBlurredBackground(view);
+        initBlurredBackground(view, R.drawable.bg_house_center_trees, 25f, .05f);
         return view;
     }
 
@@ -58,13 +58,6 @@ public class RequestReviewFragment extends PageFragment {
                 nextFragment();
             }
         });
-    }
-
-    private void initBlurredBackground(View view) {
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_house_center_trees);
-        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
-        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
-        view.setBackground(d);
     }
 
     private void updateUi() {

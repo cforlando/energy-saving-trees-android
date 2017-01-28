@@ -1,10 +1,5 @@
 package com.codefororlando.streettrees.requesttree.selecttree;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -18,22 +13,18 @@ import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.TreeApplication;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
-import com.codefororlando.streettrees.bitmap.BitmapBlurObservableTask;
+import com.codefororlando.streettrees.requesttree.BlurredBackgroundFragment;
 import com.codefororlando.streettrees.util.TreeDrawableResourceProvider;
 import com.codefororlando.streettrees.view.ImageViewPagerAdapter;
-import com.codefororlando.streettrees.view.PageFragment;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.functions.Action1;
-
 /**
  * Created by johnli on 9/24/16.
  */
-public class SelectTreeFragment extends PageFragment implements SelectTreePresenter.SelectTreeView,
+public class SelectTreeFragment extends BlurredBackgroundFragment implements SelectTreePresenter.SelectTreeView,
         ViewPager.OnPageChangeListener {
 
     private static final String PAGER_INDEX_KEY = "PAGER_INDEX_KEY";
@@ -70,7 +61,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
             pageIndex = 0;
         }
         bindUi(view);
-        initBlurredBackground(view);
+        initBlurredBackground(view, R.drawable.bg_forrest, 25f, .05f);
         return view;
     }
 
@@ -127,22 +118,22 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
         pager.setOffscreenPageLimit(1);
     }
 
-    void initBlurredBackground(final View view) {
-        final Resources resources = getResources();
-        Bitmap backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_forrest);
-        Observable<Bitmap> blurTaskObservable = new BitmapBlurObservableTask.Builder(getContext(), backgroundBitmap)
-                .radius(25f)
-                .scale(.05f)
-                .build()
-                .getObservable();
-        blurTaskObservable.subscribe(new Action1<Bitmap>() {
-            @Override
-            public void call(Bitmap bitmap) {
-                Drawable blurredDrawable = new BitmapDrawable(resources, bitmap);
-                view.setBackground(blurredDrawable);
-            }
-        });
-    }
+//    void initBlurredBackground(final View view) {
+//        final Resources resources = getResources();
+//        Bitmap backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_forrest);
+//        Observable<Bitmap> blurTaskObservable = new BitmapBlurObservableTask.Builder(getContext(), backgroundBitmap)
+//                .radius(25f)
+//                .scale(.05f)
+//                .build()
+//                .getObservable();
+//        blurTaskObservable.subscribe(new Action1<Bitmap>() {
+//            @Override
+//            public void call(Bitmap bitmap) {
+//                Drawable blurredDrawable = new BitmapDrawable(resources, bitmap);
+//                view.setBackground(blurredDrawable);
+//            }
+//        });
+//    }
 
     void nextFragment() {
         pageListener.next();
