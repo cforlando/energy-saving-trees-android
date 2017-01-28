@@ -32,6 +32,7 @@ public final class BitmapBlurObservableTask {
             public void call(Subscriber<? super Bitmap> subscriber) {
                 Bitmap blurredBackground = BlurBuilder.blur(context, bitmap, scale, radius);
                 subscriber.onNext(blurredBackground);
+                subscriber.onCompleted();
             }
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());

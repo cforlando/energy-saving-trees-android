@@ -48,8 +48,6 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     SelectTreePresenter presenter;
     private int pageIndex;
 
-    Subscription blurTaskSubscription;
-
     @Inject
     protected TreeDescriptionProvider treeDescriptionProvider;
     @Inject
@@ -138,7 +136,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
                 .scale(.05f)
                 .build()
                 .getObservable();
-        blurTaskSubscription = blurTaskObservable.subscribe(new Action1<Bitmap>() {
+        blurTaskObservable.subscribe(new Action1<Bitmap>() {
             @Override
             public void call(Bitmap bitmap) {
                 Drawable blurredDrawable = new BitmapDrawable(resources, bitmap);
@@ -167,12 +165,6 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        blurTaskSubscription.unsubscribe();
     }
 
     @Override
