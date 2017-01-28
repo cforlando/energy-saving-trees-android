@@ -6,10 +6,6 @@ import com.codefororlando.streettrees.R;
 
 import javax.inject.Inject;
 
-/**
- * Created by johnli on 12/10/16.
- */
-
 public class TreeDrawableResourceProvider {
 
     public

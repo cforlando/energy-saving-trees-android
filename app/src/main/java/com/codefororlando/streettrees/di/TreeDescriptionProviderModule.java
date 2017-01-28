@@ -7,9 +7,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by johnli on 10/18/16.
- */
 @Module
 public class TreeDescriptionProviderModule {
     private final TreeDescriptionProvider treeDescriptionProvider;

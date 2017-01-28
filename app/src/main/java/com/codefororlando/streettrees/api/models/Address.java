@@ -3,9 +3,6 @@ package com.codefororlando.streettrees.api.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by johnli on 9/24/16.
- */
 public class Address implements Parcelable {
 
     public static final String TAG = "Address";

@@ -7,9 +7,6 @@ import com.google.android.gms.maps.model.VisibleRegion;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by johnli on 10/16/16.
- */
 public final class TreeMapUtil {
     public static List<Tree> getVisibleTrees(final VisibleRegion region, List<Tree> trees, int limit) {
         int count = 0;

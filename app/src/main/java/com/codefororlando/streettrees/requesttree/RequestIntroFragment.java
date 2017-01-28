@@ -9,9 +9,6 @@ import android.widget.Button;
 
 import com.codefororlando.streettrees.R;
 
-/**
- * Created by johnli on 9/24/16.
- */
 public class RequestIntroFragment extends BlurredBackgroundFragment {
 
     Button nextButton;

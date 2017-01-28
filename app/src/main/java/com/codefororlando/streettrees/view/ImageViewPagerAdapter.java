@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.bitmap.BitmapUtil;
 
-/**
- * Created by johnli on 10/16/16.
- */
 public class ImageViewPagerAdapter extends PagerAdapter {
 
     private final Context mContext;

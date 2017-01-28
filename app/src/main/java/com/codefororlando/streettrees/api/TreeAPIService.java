@@ -8,9 +8,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-/**
- * Created by johnli on 9/25/16.
- */
 public interface TreeAPIService {
 
     String TREE_DESCRIPTIONS_ROUTE = "69mx-t3bq.json";

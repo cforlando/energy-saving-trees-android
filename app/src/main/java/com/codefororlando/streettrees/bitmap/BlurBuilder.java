@@ -9,9 +9,6 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
-/**
- * Created by johnli on 12/6/16.
- */
 
 public class BlurBuilder {
 

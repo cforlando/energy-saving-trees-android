@@ -17,9 +17,6 @@ import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.ContactInfo;
 import com.codefororlando.streettrees.requesttree.BlurredBackgroundFragment;
 
-/**
- * Created by johnli on 9/24/16.
- */
 public class ContactInfoFragment extends BlurredBackgroundFragment
         implements ContactInfoPresenter.ContactInfoView, TextView.OnEditorActionListener {
 

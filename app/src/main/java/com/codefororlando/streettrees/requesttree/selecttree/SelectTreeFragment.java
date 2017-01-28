@@ -118,23 +118,6 @@ public class SelectTreeFragment extends BlurredBackgroundFragment implements Sel
         pager.setOffscreenPageLimit(1);
     }
 
-//    void initBlurredBackground(final View view) {
-//        final Resources resources = getResources();
-//        Bitmap backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_forrest);
-//        Observable<Bitmap> blurTaskObservable = new BitmapBlurObservableTask.Builder(getContext(), backgroundBitmap)
-//                .radius(25f)
-//                .scale(.05f)
-//                .build()
-//                .getObservable();
-//        blurTaskObservable.subscribe(new Action1<Bitmap>() {
-//            @Override
-//            public void call(Bitmap bitmap) {
-//                Drawable blurredDrawable = new BitmapDrawable(resources, bitmap);
-//                view.setBackground(blurredDrawable);
-//            }
-//        });
-//    }
-
     void nextFragment() {
         pageListener.next();
     }

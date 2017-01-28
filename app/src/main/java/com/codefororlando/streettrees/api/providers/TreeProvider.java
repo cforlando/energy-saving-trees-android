@@ -24,9 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.functions.Func0;
 
-/**
- * Created by johnli on 9/25/16.
- */
 public class TreeProvider implements TreeProviderInterface {
     private static final String BASE_URL = "https://brigades.opendatanetwork.com/resource/";
     private static final int CONNECT_TIMEOUT = 15;
