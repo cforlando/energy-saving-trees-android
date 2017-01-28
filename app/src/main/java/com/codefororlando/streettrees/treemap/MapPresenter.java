@@ -18,9 +18,9 @@ import rx.schedulers.Schedulers;
 
 public class MapPresenter {
 
-    MapView view;
-    TreeProvider treeProvider;
-    Subscription treeSubscription;
+    private MapView view;
+    private TreeProvider treeProvider;
+    private Subscription treeSubscription;
 
     public void attach(TreeProvider provider, MapView view) {
         this.view = view;

@@ -15,7 +15,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 public class BlurBuilder {
 
-    //Radius must be less than 25
+    //NOTE Radius must be less than 25
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static Bitmap blur(Context context, Bitmap image, float scale, float radius) {
         int width = Math.round(image.getWidth() * scale);

@@ -10,11 +10,11 @@ public class Address implements Parcelable {
 
     public static final String TAG = "Address";
 
-    String streetAddress;
-    String streetAddressExtra;
-    String city;
-    String state;
-    String zip;
+    private String streetAddress;
+    private String streetAddressExtra;
+    private String city;
+    private String state;
+    private String zip;
 
     public Address() {
     }
