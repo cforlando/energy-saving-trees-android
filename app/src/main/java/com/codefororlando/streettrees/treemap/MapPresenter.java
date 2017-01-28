@@ -29,7 +29,7 @@ public class MapPresenter {
 
     public void detach() {
         view = null;
-        if(treeSubscription != null && !treeSubscription.isUnsubscribed()) {
+        if (treeSubscription != null && !treeSubscription.isUnsubscribed()) {
             treeSubscription.unsubscribe();
         }
     }

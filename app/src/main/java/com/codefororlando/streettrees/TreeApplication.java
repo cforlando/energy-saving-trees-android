@@ -16,6 +16,7 @@ import com.codefororlando.streettrees.component.TreeProviderModule;
 public class TreeApplication extends Application {
 
     private TreeProviderComponent treeProviderComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();

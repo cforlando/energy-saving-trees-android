@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.ContactInfo;
-import com.codefororlando.streettrees.util.BlurBuilder;
+import com.codefororlando.streettrees.bitmap.BlurBuilder;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**
@@ -43,7 +43,7 @@ public class ContactInfoFragment extends PageFragment {
         View view = inflater.inflate(R.layout.request_tree_contact_info, container, false);
         bindUi(view);
         initBlurredBackground(view);
-        return  view;
+        return view;
     }
 
     void bindUi(View view) {

@@ -19,7 +19,8 @@ public class TreeProviderModule {
         this.treeProvider = provider;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     public TreeProvider providesTreeProvider() {
         return treeProvider;
     }

@@ -64,24 +64,24 @@ public class TreeProvider implements TreeProviderInterface {
     public void getTrees(final TreeProviderResultHandler<Tree> handler) {
         Call<List<Tree>> getTreesTransaction = service.getTrees();
         getTreesTransaction.enqueue(new Callback<List<Tree>>() {
-                @Override
-                public void onResponse(Call<List<Tree>> call, Response<List<Tree>> response) {
-                    List<Tree> trees = response.body();
-                    handler.onComplete(true, trees);
-                }
+            @Override
+            public void onResponse(Call<List<Tree>> call, Response<List<Tree>> response) {
+                List<Tree> trees = response.body();
+                handler.onComplete(true, trees);
+            }
 
-                @Override
-                public void onFailure(Call<List<Tree>> call, Throwable t) {
-                    handler.onComplete(false, null);
-                }
-            });
+            @Override
+            public void onFailure(Call<List<Tree>> call, Throwable t) {
+                handler.onComplete(false, null);
+            }
+        });
     }
 
     private List<Tree> getTrees() throws IOException {
         Call<List<Tree>> getTreesTransaction = service.getTrees();
         Response<List<Tree>> treeResponse = null;
         treeResponse = getTreesTransaction.execute();
-        if(treeResponse.body() == null) {
+        if (treeResponse.body() == null) {
             return null;
         }
         return treeResponse.body();

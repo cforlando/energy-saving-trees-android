@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by johnli on 9/24/16.
  */
-public class Address implements Parcelable{
+public class Address implements Parcelable {
 
     public static final String TAG = "Address";
 
@@ -16,7 +16,8 @@ public class Address implements Parcelable{
     String state;
     String zip;
 
-    public Address() { }
+    public Address() {
+    }
 
     protected Address(Parcel in) {
         streetAddress = in.readString();

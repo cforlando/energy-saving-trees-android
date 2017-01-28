@@ -27,6 +27,7 @@ public class PageFragment extends Fragment {
 
     public interface PageFragmentListener {
         void next();
+
         void previous();
     }
 }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.util.BlurBuilder;
+import com.codefororlando.streettrees.bitmap.BlurBuilder;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**
@@ -35,7 +35,7 @@ public class RequestIntroFragment extends PageFragment {
         });
 
         initBlurredBackground(view);
-        return  view;
+        return view;
     }
 
     void initBlurredBackground(View view) {

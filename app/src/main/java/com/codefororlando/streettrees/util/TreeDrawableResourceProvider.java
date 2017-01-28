@@ -15,10 +15,14 @@ import static com.codefororlando.streettrees.R.drawable.cfo_yellow_trumpet;
 
 public class TreeDrawableResourceProvider {
 
-    public @Inject
-    TreeDrawableResourceProvider() { }
+    public
+    @Inject
+    TreeDrawableResourceProvider() {
+    }
 
-    public @DrawableRes int getDrawable(final String treeName) {
+    public
+    @DrawableRes
+    int getDrawable(final String treeName) {
         switch (treeName) {
             case "Live Oak":
                 return R.drawable.cfo_live_oak;

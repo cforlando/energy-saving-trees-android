@@ -33,6 +33,7 @@ import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.maps.android.geojson.GeoJsonLayer;
 
 import org.json.JSONException;
+
 import java.util.List;
 import java.io.IOException;
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tree_map);
 
-        ((TreeApplication)getApplication()).getTreeProviderComponent().inject(this);
+        ((TreeApplication) getApplication()).getTreeProviderComponent().inject(this);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
 
     @Override
     public void updateMapWithTrees(List<Tree> trees) {
-        if(trees == null) {
+        if (trees == null) {
             return;
         }
 
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
             return;
         }
         Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-        if(lastKnownLocation != null) {
+        if (lastKnownLocation != null) {
             LatLng currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
         }

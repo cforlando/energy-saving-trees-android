@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.util;
+package com.codefororlando.streettrees.bitmap;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -32,6 +32,7 @@ public class BlurBuilder {
         theIntrinsic.setInput(tmpIn);
         theIntrinsic.forEach(tmpOut);
         tmpOut.copyTo(outputBitmap);
+        rs.destroy();
 
         return outputBitmap;
     }

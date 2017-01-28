@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.DrawableRes;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.util.BitmapUtil;
-
-import java.util.List;
+import com.codefororlando.streettrees.bitmap.BitmapUtil;
 
 /**
  * Created by johnli on 10/16/16.
  */
-public class ImageViewPagerAdapter extends PagerAdapter{
+public class ImageViewPagerAdapter extends PagerAdapter {
 
     Context mContext;
     LayoutInflater mLayoutInflater;
@@ -34,7 +31,7 @@ public class ImageViewPagerAdapter extends PagerAdapter{
 
     @Override
     public int getCount() {
-        if(imageResIds == null) {
+        if (imageResIds == null) {
             return 0;
         }
         int count = imageResIds.length;
@@ -45,9 +42,9 @@ public class ImageViewPagerAdapter extends PagerAdapter{
         TypedArray typedArray = res.obtainTypedArray(imageArrResId);
         int count = res.getIntArray(imageArrResId).length;  //HACK, didn't find a better way to get length
         imageResIds = new int[count];
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             int imageResId = typedArray.getResourceId(i, -1);
-            if(imageResId != -1) {
+            if (imageResId != -1) {
                 imageResIds[i] = imageResId;
             }
         }
@@ -86,6 +83,6 @@ public class ImageViewPagerAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }

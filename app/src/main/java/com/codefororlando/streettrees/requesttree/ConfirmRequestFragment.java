@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.util.BlurBuilder;
+import com.codefororlando.streettrees.bitmap.BlurBuilder;
 import com.codefororlando.streettrees.view.PageFragment;
 
 /**
@@ -34,7 +34,7 @@ public class ConfirmRequestFragment extends PageFragment {
         View view = inflater.inflate(R.layout.request_tree_confirmation, container, false);
         bindView(view);
         initBlurredBackground(view);
-        return  view;
+        return view;
     }
 
 

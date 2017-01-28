@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by johnli on 9/24/16.
  */
-public class ContactInfo implements Parcelable{
+public class ContactInfo implements Parcelable {
 
     public static final String TAG = "ContactInfo";
 
@@ -14,7 +14,8 @@ public class ContactInfo implements Parcelable{
     String phoneNumber;
     String email;
 
-    public ContactInfo() { }
+    public ContactInfo() {
+    }
 
     protected ContactInfo(Parcel in) {
         name = in.readString();
