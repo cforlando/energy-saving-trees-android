@@ -15,7 +15,7 @@ public final class TreeMapUtil {
         int count = 0;
         List<Tree> out = new ArrayList<>();
         for (Tree entry : trees) {
-            if(count >= limit) {
+            if (count >= limit) {
                 break;
             }
 

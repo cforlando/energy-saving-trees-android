@@ -20,7 +20,6 @@ import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.requesttree.RequestTreeActivity;
 import com.codefororlando.streettrees.treemap.MapPresenter;
-import com.codefororlando.streettrees.treemap.MapView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,12 +32,15 @@ import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.maps.android.geojson.GeoJsonLayer;
 
 import org.json.JSONException;
+
 import java.util.List;
 import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MapView, OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
+public class MainActivity extends AppCompatActivity implements MapPresenter.MapView,
+        OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnInfoWindowClickListener, GoogleMap.OnCameraChangeListener {
 
     private GoogleMap map;
     private LocationManager locationManager;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tree_map);
 
-        ((TreeApplication)getApplication()).getTreeProviderComponent().inject(this);
+        ((TreeApplication) getApplication()).getTreeProviderComponent().inject(this);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
 
     @Override
     public void updateMapWithTrees(List<Tree> trees) {
-        if(trees == null) {
+        if (trees == null) {
             return;
         }
 
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements MapView, OnMapRea
             return;
         }
         Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-        if(lastKnownLocation != null) {
+        if (lastKnownLocation != null) {
             LatLng currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
         }

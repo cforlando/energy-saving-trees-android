@@ -1,11 +1,7 @@
-package com.codefororlando.streettrees.requesttree;
+package com.codefororlando.streettrees.requesttree.deliveryaddress;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,27 +12,19 @@ import android.widget.EditText;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Address;
-import com.codefororlando.streettrees.util.BlurBuilder;
-import com.codefororlando.streettrees.view.PageFragment;
+import com.codefororlando.streettrees.requesttree.BlurredBackgroundFragment;
 
-/**
- * Created by johnli on 9/24/16.
- */
-public class AddressFormFragment extends PageFragment {
 
-    Button nextButton;
-    EditText streetAddressField;
-    EditText streetAddressExtraField;
-    EditText cityField;
-    EditText stateField;
-    EditText zipField;
+public class AddressFormFragment extends BlurredBackgroundFragment {
 
-    AddressFormListener addressFormListener;
+    private Button nextButton;
+    private EditText streetAddressField;
+    private EditText streetAddressExtraField;
+    private EditText cityField;
+    private EditText stateField;
+    private EditText zipField;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private AddressFormListener addressFormListener;
 
     @Override
     public void onStart() {
@@ -49,11 +37,11 @@ public class AddressFormFragment extends PageFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_address, container, false);
         bindUi(view);
-        initBlurredBackground(view);
-        return  view;
+        initBlurredBackground(view, R.drawable.bg_tall_trees, 25f, .05f);
+        return view;
     }
 
-    void bindUi(View view) {
+    private void bindUi(View view) {
         streetAddressField = (EditText) view.findViewById(R.id.street_address_field);
         streetAddressExtraField = (EditText) view.findViewById(R.id.street_address_extra_field);
         cityField = (EditText) view.findViewById(R.id.city_field);
@@ -69,14 +57,7 @@ public class AddressFormFragment extends PageFragment {
         });
     }
 
-    void initBlurredBackground(View view) {
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_tall_trees);
-        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
-        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
-        view.setBackground(d);
-    }
-
-    void nextFragment() {
+    private void nextFragment() {
         Address address = new Address();
         address.setStreetAddress(streetAddressField.getText().toString());
         address.setStreetAddressExtra(streetAddressExtraField.getText().toString());

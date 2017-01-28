@@ -41,10 +41,6 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         treeType = loadingIntent.getStringExtra(MainActivity.EXTRA_TREETYPE);
     }
 
-    private void loadTreeData(LatLng _location, String _treeType) {
-
-    }
-
     @Override
     public TreeDescription getTreeData() {
         return treeDescriptionProvider.getTreeDescription(treeType);

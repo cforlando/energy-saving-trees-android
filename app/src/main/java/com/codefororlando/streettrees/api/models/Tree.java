@@ -17,13 +17,13 @@ public class Tree {
 
     private String savings;
 
-    public Tree(){
+    public Tree() {
 
     }
 
-    public Tree(Date _date, double _lat, double _long, String _treeName){
+    public Tree(Date _date, double _lat, double _long, String _treeName) {
         setDate(_date);
-        setLocation( _lat, _long);
+        setLocation(_lat, _long);
         setTreeName(_treeName);
     }
 
@@ -45,8 +45,7 @@ public class Tree {
     }
 
     public void setLocation(double latitude, double longitude) {
-        LatLng location = new LatLng(latitude,longitude);
-        this.location = location;
+        this.location = new LatLng(latitude, longitude);
     }
 
     public Date getDate() {

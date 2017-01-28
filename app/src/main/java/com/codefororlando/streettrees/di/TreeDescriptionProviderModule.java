@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.component;
+package com.codefororlando.streettrees.di;
 
 import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
 
@@ -12,7 +12,7 @@ import dagger.Provides;
  */
 @Module
 public class TreeDescriptionProviderModule {
-    private TreeDescriptionProvider treeDescriptionProvider;
+    private final TreeDescriptionProvider treeDescriptionProvider;
 
     public TreeDescriptionProviderModule(TreeDescriptionProvider provider) {
         this.treeDescriptionProvider = provider;

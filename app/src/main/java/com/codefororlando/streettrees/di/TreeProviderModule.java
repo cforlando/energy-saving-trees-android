@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.component;
+package com.codefororlando.streettrees.di;
 
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 
@@ -13,13 +13,14 @@ import dagger.Provides;
 @Module
 public class TreeProviderModule {
 
-    private TreeProvider treeProvider;
+    private final TreeProvider treeProvider;
 
     public TreeProviderModule(TreeProvider provider) {
         this.treeProvider = provider;
     }
 
-    @Provides @Singleton
+    @Provides
+    @Singleton
     public TreeProvider providesTreeProvider() {
         return treeProvider;
     }

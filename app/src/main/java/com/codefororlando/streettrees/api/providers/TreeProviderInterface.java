@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface TreeProviderInterface {
 
-    public interface TreeProviderResultHandler<T> {
+    interface TreeProviderResultHandler<T> {
         void onComplete(boolean isSuccess, List<T> result);
     }
 

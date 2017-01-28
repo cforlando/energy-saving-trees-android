@@ -1,6 +1,5 @@
 package com.codefororlando.streettrees.requesttree.selecttree;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -11,48 +10,59 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.codefororlando.streettrees.R;
+import com.codefororlando.streettrees.TreeApplication;
 import com.codefororlando.streettrees.api.models.TreeDescription;
+import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
+import com.codefororlando.streettrees.requesttree.BlurredBackgroundFragment;
+import com.codefororlando.streettrees.util.TreeDrawableResourceProvider;
 import com.codefororlando.streettrees.view.ImageViewPagerAdapter;
-import com.codefororlando.streettrees.view.PageFragment;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Created by johnli on 9/24/16.
  */
-public class SelectTreeFragment extends PageFragment implements SelectTreePresenter.SelectTreeView,
-        ViewPager.OnPageChangeListener{
+public class SelectTreeFragment extends BlurredBackgroundFragment implements SelectTreePresenter.SelectTreeView,
+        ViewPager.OnPageChangeListener {
 
     private static final String PAGER_INDEX_KEY = "PAGER_INDEX_KEY";
 
-    Button nextButton;
-    ViewPager pager;
-    ImageViewPagerAdapter adapter;
+    private Button nextButton;
+    private ViewPager pager;
+    private ImageViewPagerAdapter adapter;
 
-    TextView treeNameLabel, descriptionLabel, widthLabel, heightLabel, leafLabel, shapeLabel;
+    private TextView treeNameLabel, descriptionLabel, widthLabel, heightLabel, leafLabel, shapeLabel;
 
-    SelectTreePresenter presenter;
+    private SelectTreePresenter presenter;
     private int pageIndex;
+
+    @Inject
+    protected TreeDescriptionProvider treeDescriptionProvider;
+    @Inject
+    protected TreeDrawableResourceProvider treeDrawableResourceProvider;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adapter = new ImageViewPagerAdapter(getActivity());
-        presenter = new SelectTreePresenter(getContext());
+        ((TreeApplication) getActivity().getApplicationContext()).getTreeProviderComponent().inject(this);
+        presenter = new SelectTreePresenter(treeDescriptionProvider, treeDrawableResourceProvider);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_select, container, false);
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             pageIndex = savedInstanceState.getInt(PAGER_INDEX_KEY, 0);
         } else {
             pageIndex = 0;
         }
         bindUi(view);
-        initBlurredBackground(view);
-        return  view;
+        initBlurredBackground(view, R.drawable.bg_forrest, 25f, .05f);
+        return view;
     }
 
     @Override
@@ -79,7 +89,7 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     public void present(List<TreeViewModel> treeViewModels) {
         int count = treeViewModels.size();
         int[] imageResIds = new int[count];
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             imageResIds[i] = treeViewModels.get(i).getDrawableResId();
         }
         adapter.setImages(imageResIds);
@@ -108,10 +118,22 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
         pager.setOffscreenPageLimit(1);
     }
 
-    void initBlurredBackground(View view) {
-        Drawable blurredBackground = presenter.getBlurredBackground(getContext(), R.drawable.bg_forrest);
-        view.setBackground(blurredBackground);
-    }
+//    void initBlurredBackground(final View view) {
+//        final Resources resources = getResources();
+//        Bitmap backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_forrest);
+//        Observable<Bitmap> blurTaskObservable = new BitmapBlurObservableTask.Builder(getContext(), backgroundBitmap)
+//                .radius(25f)
+//                .scale(.05f)
+//                .build()
+//                .getObservable();
+//        blurTaskObservable.subscribe(new Action1<Bitmap>() {
+//            @Override
+//            public void call(Bitmap bitmap) {
+//                Drawable blurredDrawable = new BitmapDrawable(resources, bitmap);
+//                view.setBackground(blurredDrawable);
+//            }
+//        });
+//    }
 
     void nextFragment() {
         pageListener.next();
@@ -119,8 +141,8 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
 
     void bindTreeViewModel(TreeViewModel viewModel) {
         TreeDescription tree = viewModel.getTree();
-        String width = String.format("%s - %s",tree.getMinWidth(), tree.getMaxWidth());
-        String height = String.format("%s - %s",tree.getMinHeight(), tree.getMaxHeight());
+        String width = String.format("%s - %s", tree.getMinWidth(), tree.getMaxWidth());
+        String height = String.format("%s - %s", tree.getMinHeight(), tree.getMaxHeight());
 
         treeNameLabel.setText(tree.getName());
         descriptionLabel.setText(tree.getDescription());
@@ -138,7 +160,9 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
     @Override
     public void onPageSelected(int position) {
         TreeViewModel treeViewModel = presenter.getTreeViewModel(position);
-        bindTreeViewModel(treeViewModel);
+        if (treeViewModel != null) {
+            bindTreeViewModel(treeViewModel);
+        }
     }
 
     @Override

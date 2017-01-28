@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Address;
 import com.codefororlando.streettrees.api.models.ContactInfo;
+import com.codefororlando.streettrees.requesttree.contactinfo.ContactInfoFragment;
+import com.codefororlando.streettrees.requesttree.deliveryaddress.AddressFormFragment;
 import com.codefororlando.streettrees.requesttree.selecttree.SelectTreeFragment;
 import com.codefororlando.streettrees.view.FragmentListPager;
 import com.codefororlando.streettrees.view.PageFragment;
@@ -19,10 +21,10 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
         ContactInfoFragment.ContactInfoListener,
         RequestReviewFragment.ReviewFragmentDelegate {
 
-    private static List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
+    private static final List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
 
-    Address address;
-    ContactInfo contactInfo;
+    private Address address;
+    private ContactInfo contactInfo;
 
     private FragmentListPager listPager;
     private final int FRAGMENT_COUNT = 5;
