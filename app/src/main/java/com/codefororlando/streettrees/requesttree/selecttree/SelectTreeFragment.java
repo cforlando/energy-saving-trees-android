@@ -28,7 +28,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.Subscription;
 import rx.functions.Action1;
 
 /**
@@ -39,13 +38,13 @@ public class SelectTreeFragment extends PageFragment implements SelectTreePresen
 
     private static final String PAGER_INDEX_KEY = "PAGER_INDEX_KEY";
 
-    Button nextButton;
-    ViewPager pager;
-    ImageViewPagerAdapter adapter;
+    private Button nextButton;
+    private ViewPager pager;
+    private ImageViewPagerAdapter adapter;
 
-    TextView treeNameLabel, descriptionLabel, widthLabel, heightLabel, leafLabel, shapeLabel;
+    private TextView treeNameLabel, descriptionLabel, widthLabel, heightLabel, leafLabel, shapeLabel;
 
-    SelectTreePresenter presenter;
+    private SelectTreePresenter presenter;
     private int pageIndex;
 
     @Inject

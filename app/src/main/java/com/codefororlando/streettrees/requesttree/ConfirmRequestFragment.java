@@ -20,7 +20,7 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class ConfirmRequestFragment extends PageFragment {
 
-    Button nextButton;
+    private Button nextButton;
 
     @Override
     public void onStart() {
@@ -37,15 +37,14 @@ public class ConfirmRequestFragment extends PageFragment {
         return view;
     }
 
-
-    void initBlurredBackground(View view) {
+    private void initBlurredBackground(View view) {
         Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_lake_trees);
         Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
         Drawable d = new BitmapDrawable(getResources(), blurredBackground);
         view.setBackground(d);
     }
 
-    void bindView(View view) {
+    private void bindView(View view) {
         nextButton = (Button) view.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

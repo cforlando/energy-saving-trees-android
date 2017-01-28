@@ -38,7 +38,7 @@ public class RequestIntroFragment extends PageFragment {
         return view;
     }
 
-    void initBlurredBackground(View view) {
+    private void initBlurredBackground(View view) {
         Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_house_center_trees);
         Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
         Drawable d = new BitmapDrawable(getResources(), blurredBackground);

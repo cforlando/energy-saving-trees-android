@@ -24,14 +24,14 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class AddressFormFragment extends PageFragment {
 
-    Button nextButton;
-    EditText streetAddressField;
-    EditText streetAddressExtraField;
-    EditText cityField;
-    EditText stateField;
-    EditText zipField;
+    private Button nextButton;
+    private EditText streetAddressField;
+    private EditText streetAddressExtraField;
+    private EditText cityField;
+    private EditText stateField;
+    private EditText zipField;
 
-    AddressFormListener addressFormListener;
+    private AddressFormListener addressFormListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class AddressFormFragment extends PageFragment {
         return view;
     }
 
-    void bindUi(View view) {
+    private void bindUi(View view) {
         streetAddressField = (EditText) view.findViewById(R.id.street_address_field);
         streetAddressExtraField = (EditText) view.findViewById(R.id.street_address_extra_field);
         cityField = (EditText) view.findViewById(R.id.city_field);
@@ -69,14 +69,14 @@ public class AddressFormFragment extends PageFragment {
         });
     }
 
-    void initBlurredBackground(View view) {
+    private void initBlurredBackground(View view) {
         Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_tall_trees);
         Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
         Drawable d = new BitmapDrawable(getResources(), blurredBackground);
         view.setBackground(d);
     }
 
-    void nextFragment() {
+    private void nextFragment() {
         Address address = new Address();
         address.setStreetAddress(streetAddressField.getText().toString());
         address.setStreetAddressExtra(streetAddressExtraField.getText().toString());

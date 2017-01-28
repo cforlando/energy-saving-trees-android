@@ -48,7 +48,7 @@ public class RequestReviewFragment extends PageFragment {
         return view;
     }
 
-    void bindView(View view) {
+    private void bindView(View view) {
         addressLabel = (TextView) view.findViewById(R.id.address_label);
         contactLabel = (TextView) view.findViewById(R.id.contact_label);
         nextButton = (Button) view.findViewById(R.id.next_button);
@@ -60,14 +60,14 @@ public class RequestReviewFragment extends PageFragment {
         });
     }
 
-    void initBlurredBackground(View view) {
+    private void initBlurredBackground(View view) {
         Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_house_center_trees);
         Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
         Drawable d = new BitmapDrawable(getResources(), blurredBackground);
         view.setBackground(d);
     }
 
-    void updateUi() {
+    private void updateUi() {
         Address address = delegate.getAddress();
         ContactInfo contactInfo = delegate.getContactInfo();
 
@@ -80,7 +80,7 @@ public class RequestReviewFragment extends PageFragment {
         contactLabel.setText(contactStr);
     }
 
-    void nextFragment() {
+    private void nextFragment() {
         pageListener.next();
     }
 

@@ -24,12 +24,12 @@ import com.codefororlando.streettrees.view.PageFragment;
  */
 public class ContactInfoFragment extends PageFragment {
 
-    Button nextButton;
-    EditText nameField;
-    EditText phoneNumberField;
-    EditText emailField;
+    private Button nextButton;
+    private EditText nameField;
+    private EditText phoneNumberField;
+    private EditText emailField;
 
-    ContactInfoListener contactInfoListener;
+    private ContactInfoListener contactInfoListener;
 
     @Override
     public void onStart() {
@@ -46,7 +46,7 @@ public class ContactInfoFragment extends PageFragment {
         return view;
     }
 
-    void bindUi(View view) {
+    private void bindUi(View view) {
         nameField = (EditText) view.findViewById(R.id.name_field);
         phoneNumberField = (EditText) view.findViewById(R.id.phone_number_field);
         emailField = (EditText) view.findViewById(R.id.email_field);
@@ -60,14 +60,14 @@ public class ContactInfoFragment extends PageFragment {
         });
     }
 
-    void initBlurredBackground(View view) {
+    private void initBlurredBackground(View view) {
         Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forrest);
         Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
         Drawable d = new BitmapDrawable(getResources(), blurredBackground);
         view.setBackground(d);
     }
 
-    void nextFragment() {
+    private void nextFragment() {
         ContactInfo contactInfo = new ContactInfo();
         contactInfo.setName(nameField.getText().toString());
         contactInfo.setPhoneNumber(phoneNumberField.getText().toString());
