@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.component;
+package com.codefororlando.streettrees.di;
 
 import com.codefororlando.streettrees.activity.DetailActivity;
 import com.codefororlando.streettrees.activity.MainActivity;
