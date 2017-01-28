@@ -34,11 +34,6 @@ public class AddressFormFragment extends PageFragment {
     private AddressFormListener addressFormListener;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         getActivity().setTitle(getString(R.string.address_form_fragment_title));

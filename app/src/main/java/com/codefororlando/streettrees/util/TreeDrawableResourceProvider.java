@@ -1,13 +1,10 @@
 package com.codefororlando.streettrees.util;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 
 import com.codefororlando.streettrees.R;
 
 import javax.inject.Inject;
-
-import static com.codefororlando.streettrees.R.drawable.cfo_yellow_trumpet;
 
 /**
  * Created by johnli on 12/10/16.

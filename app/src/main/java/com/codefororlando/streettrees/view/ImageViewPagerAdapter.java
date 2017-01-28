@@ -19,8 +19,8 @@ import com.codefororlando.streettrees.bitmap.BitmapUtil;
  */
 public class ImageViewPagerAdapter extends PagerAdapter {
 
-    private Context mContext;
-    private LayoutInflater mLayoutInflater;
+    private final Context mContext;
+    private final LayoutInflater mLayoutInflater;
 
     int[] imageResIds;
 
@@ -34,8 +34,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
         if (imageResIds == null) {
             return 0;
         }
-        int count = imageResIds.length;
-        return count;
+        return imageResIds.length;
     }
 
     public void setImages(Resources res, int imageArrResId) {

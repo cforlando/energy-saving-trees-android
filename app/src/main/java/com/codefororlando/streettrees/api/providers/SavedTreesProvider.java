@@ -1,13 +1,11 @@
 package com.codefororlando.streettrees.api.providers;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.models.TreeJsonModel;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.VisibleRegion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,13 +18,11 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SavedTreesProvider {
-    private Map<LatLng, Tree> treeCache;
+    private final Map<LatLng, Tree> treeCache;
 
     private static SavedTreesProvider instance;
 

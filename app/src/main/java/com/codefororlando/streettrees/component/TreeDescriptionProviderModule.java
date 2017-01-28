@@ -12,7 +12,7 @@ import dagger.Provides;
  */
 @Module
 public class TreeDescriptionProviderModule {
-    private TreeDescriptionProvider treeDescriptionProvider;
+    private final TreeDescriptionProvider treeDescriptionProvider;
 
     public TreeDescriptionProviderModule(TreeDescriptionProvider provider) {
         this.treeDescriptionProvider = provider;

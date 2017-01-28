@@ -5,7 +5,6 @@ import android.content.Context;
 import com.codefororlando.streettrees.api.TreeAPIService;
 import com.codefororlando.streettrees.api.deserializer.LatLngDeserializer;
 import com.codefororlando.streettrees.api.models.Tree;
-import com.codefororlando.streettrees.api.models.TreeDescription;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,7 +34,7 @@ public class TreeProvider implements TreeProviderInterface {
     private static final int READ_TIMEOUT = 30;
     private static final long CACHE_SIZE = 4 * 1024 * 1024; // 10 MB
 
-    TreeAPIService service;
+    private final TreeAPIService service;
 
     public TreeProvider(Context context) {
         File httpCacheDirectory = new File(context.getCacheDir(), "cached_responses");

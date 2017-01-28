@@ -62,7 +62,7 @@ public class DetailFragment extends Fragment {
     }
 
     public interface DetailListener {
-        public TreeDescription getTreeData();
+        TreeDescription getTreeData();
     }
 
 }

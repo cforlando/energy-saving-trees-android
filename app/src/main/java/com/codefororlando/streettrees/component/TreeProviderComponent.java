@@ -3,7 +3,6 @@ package com.codefororlando.streettrees.component;
 import com.codefororlando.streettrees.activity.DetailActivity;
 import com.codefororlando.streettrees.activity.MainActivity;
 import com.codefororlando.streettrees.requesttree.selecttree.SelectTreeFragment;
-import com.codefororlando.streettrees.requesttree.selecttree.SelectTreePresenter;
 
 import javax.inject.Singleton;
 

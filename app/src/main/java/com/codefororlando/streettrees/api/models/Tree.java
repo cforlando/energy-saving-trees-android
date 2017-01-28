@@ -45,8 +45,7 @@ public class Tree {
     }
 
     public void setLocation(double latitude, double longitude) {
-        LatLng location = new LatLng(latitude, longitude);
-        this.location = location;
+        this.location = new LatLng(latitude, longitude);
     }
 
     public Date getDate() {

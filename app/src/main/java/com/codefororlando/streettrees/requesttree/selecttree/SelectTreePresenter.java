@@ -12,8 +12,8 @@ public class SelectTreePresenter {
 
     private SelectTreeView view;
 
-    private TreeDescriptionProvider treeDescriptionProvider;
-    private TreeDrawableResourceProvider treeDrawableResourceProvider;
+    private final TreeDescriptionProvider treeDescriptionProvider;
+    private final TreeDrawableResourceProvider treeDrawableResourceProvider;
 
     private List<TreeViewModel> treeViewModels;
 

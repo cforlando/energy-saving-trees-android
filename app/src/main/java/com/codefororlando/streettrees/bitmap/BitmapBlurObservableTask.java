@@ -13,10 +13,10 @@ public final class BitmapBlurObservableTask {
     private final static float DEFAULT_BLUR_SCALE = .05f;
     private final static float DEFAULT_BLUR_RADIUS = 25f;
 
-    private Context context;
-    private Bitmap bitmap;
-    private float scale;
-    private float radius;
+    private final Context context;
+    private final Bitmap bitmap;
+    private final float scale;
+    private final float radius;
 
 
     private BitmapBlurObservableTask(Builder builder) {
@@ -39,8 +39,8 @@ public final class BitmapBlurObservableTask {
     }
 
     public static class Builder {
-        private Context context;
-        private Bitmap bitmap;
+        private final Context context;
+        private final Bitmap bitmap;
         private float scale = DEFAULT_BLUR_SCALE;
         private float radius = DEFAULT_BLUR_RADIUS;
 
