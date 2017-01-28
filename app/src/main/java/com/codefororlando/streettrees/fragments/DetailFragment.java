@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 
-/**
- * Created by jdonlan on 6/4/16.
- */
 public class DetailFragment extends Fragment {
 
     public static final String TAG = "DETAILFRAGMENT";

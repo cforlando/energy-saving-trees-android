@@ -10,9 +10,6 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
-/**
- * Created by johnli on 9/25/16.
- */
 public class LatLngDeserializer implements JsonDeserializer<LatLng> {
 
     @Override

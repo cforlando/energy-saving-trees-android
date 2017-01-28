@@ -4,9 +4,6 @@ import com.codefororlando.streettrees.api.models.Tree;
 
 import java.util.List;
 
-/**
- * Created by johnli on 10/18/16.
- */
 public interface TreeProviderInterface {
 
     interface TreeProviderResultHandler<T> {

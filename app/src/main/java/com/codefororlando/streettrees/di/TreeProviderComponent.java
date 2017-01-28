@@ -8,9 +8,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
- * Created by johnli on 10/18/16.
- */
 
 @Singleton
 @Component(modules = {TreeProviderModule.class, TreeDescriptionProviderModule.class})

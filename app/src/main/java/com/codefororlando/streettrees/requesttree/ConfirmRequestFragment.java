@@ -1,9 +1,5 @@
 package com.codefororlando.streettrees.requesttree;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,12 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.codefororlando.streettrees.R;
-import com.codefororlando.streettrees.bitmap.BlurBuilder;
-import com.codefororlando.streettrees.view.PageFragment;
 
-/**
- * Created by johnli on 9/24/16.
- */
 public class ConfirmRequestFragment extends BlurredBackgroundFragment {
 
     private Button nextButton;

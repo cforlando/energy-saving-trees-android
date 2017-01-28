@@ -4,9 +4,6 @@ import android.support.annotation.DrawableRes;
 
 import com.codefororlando.streettrees.api.models.TreeDescription;
 
-/**
- * Created by johnli on 12/10/16.
- */
 
 public class TreeViewModel {
 

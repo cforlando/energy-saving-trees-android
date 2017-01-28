@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-/**
- * Created by johnli on 9/24/16.
- */
 public class PageFragment extends Fragment {
 
     protected PageFragmentListener pageListener;

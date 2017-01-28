@@ -10,9 +10,6 @@ import com.codefororlando.streettrees.di.TreeDescriptionProviderModule;
 import com.codefororlando.streettrees.di.TreeProviderComponent;
 import com.codefororlando.streettrees.di.TreeProviderModule;
 
-/**
- * Created by johnli on 10/18/16.
- */
 public class TreeApplication extends Application {
 
     private TreeProviderComponent treeProviderComponent;
