@@ -61,7 +61,9 @@ public class SelectTreeFragment extends BlurredBackgroundFragment implements Sel
             pageIndex = 0;
         }
         bindUi(view);
-        initBlurredBackground(view, R.drawable.bg_forrest, 25f, .05f);
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_forrest, blurRadius, blurScale);
         return view;
     }
 
