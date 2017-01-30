@@ -37,7 +37,9 @@ public class AddressFormFragment extends BlurredBackgroundFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_address, container, false);
         bindUi(view);
-        initBlurredBackground(view, R.drawable.bg_tall_trees, 25f, .05f);
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_tall_trees, blurRadius, blurScale);
         return view;
     }
 

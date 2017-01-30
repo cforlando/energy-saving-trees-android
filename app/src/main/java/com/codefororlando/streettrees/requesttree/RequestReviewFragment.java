@@ -35,7 +35,9 @@ public class RequestReviewFragment extends BlurredBackgroundFragment {
         View view = inflater.inflate(R.layout.request_tree_review, container, false);
         bindView(view);
         updateUi();
-        initBlurredBackground(view, R.drawable.bg_house_center_trees, 25f, .05f);
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_house_center_trees, blurRadius, blurScale);
         return view;
     }
 

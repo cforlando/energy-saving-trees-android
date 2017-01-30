@@ -25,13 +25,16 @@ public class RequestIntroFragment extends BlurredBackgroundFragment {
             }
         });
 
-        initBlurredBackground(view, R.drawable.bg_house_center_trees, 25f, .05f);
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_house_center_trees, blurRadius, blurScale);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         getActivity().setTitle(getString(R.string.request_intro_fragment_title));
     }
 }

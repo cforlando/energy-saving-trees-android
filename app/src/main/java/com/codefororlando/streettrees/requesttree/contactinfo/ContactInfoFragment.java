@@ -47,7 +47,9 @@ public class ContactInfoFragment extends BlurredBackgroundFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.request_tree_contact_info, container, false);
         bindUi(view);
-        initBlurredBackground(view, R.drawable.bg_forrest, 25f, .05f);
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_forrest, blurRadius, blurScale);
         presenter = new ContactInfoPresenter();
         return view;
     }
