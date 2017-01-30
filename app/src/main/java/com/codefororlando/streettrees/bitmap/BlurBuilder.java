@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.util;
+package com.codefororlando.streettrees.bitmap;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,13 +9,10 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
-/**
- * Created by johnli on 12/6/16.
- */
 
 public class BlurBuilder {
 
-    //Radius must be less than 25
+    //NOTE Radius must be less than 25
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static Bitmap blur(Context context, Bitmap image, float scale, float radius) {
         int width = Math.round(image.getWidth() * scale);
@@ -32,6 +29,7 @@ public class BlurBuilder {
         theIntrinsic.setInput(tmpIn);
         theIntrinsic.forEach(tmpOut);
         tmpOut.copyTo(outputBitmap);
+        rs.destroy();
 
         return outputBitmap;
     }

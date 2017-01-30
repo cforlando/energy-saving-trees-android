@@ -5,17 +5,15 @@ import android.content.Context;
 
 import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
-import com.codefororlando.streettrees.component.DaggerTreeProviderComponent;
-import com.codefororlando.streettrees.component.TreeDescriptionProviderModule;
-import com.codefororlando.streettrees.component.TreeProviderComponent;
-import com.codefororlando.streettrees.component.TreeProviderModule;
+import com.codefororlando.streettrees.di.DaggerTreeProviderComponent;
+import com.codefororlando.streettrees.di.TreeDescriptionProviderModule;
+import com.codefororlando.streettrees.di.TreeProviderComponent;
+import com.codefororlando.streettrees.di.TreeProviderModule;
 
-/**
- * Created by johnli on 10/18/16.
- */
 public class TreeApplication extends Application {
 
     private TreeProviderComponent treeProviderComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();

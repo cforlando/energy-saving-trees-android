@@ -41,9 +41,10 @@ public class FragmentListPager {
 
     /**
      * The default constructor.
+     *
      * @param fragmentManager used to switch between fragments in the container view.
      * @param containerViewId specifies the container that will hold our fragments.
-     * @param fragmentList the list of fragments to switch between.
+     * @param fragmentList    the list of fragments to switch between.
      */
 
     public FragmentListPager(FragmentManager fragmentManager, int containerViewId, List<Entry> fragmentList, Bundle args) {
@@ -57,6 +58,7 @@ public class FragmentListPager {
 
     /**
      * This will switch to the next fragment in the list.
+     *
      * @return false if there is no next fragment.
      */
     public synchronized boolean nextFragment(Bundle args) {
@@ -66,6 +68,7 @@ public class FragmentListPager {
 
     /**
      * This will switch to the previous fragment in the list.
+     *
      * @return false if there is no previous fragment.
      */
     public synchronized boolean previousFragment() {
@@ -76,9 +79,11 @@ public class FragmentListPager {
     public synchronized PageFragment getCurrentFragment() {
         return mFragmentList.get(getCurrentItem());
     }
+
     /**
      * This is a helper function that will return the current position in
      * the list of fragments being displayed.
+     *
      * @return the position.
      */
     public synchronized int getCurrentItem() {
@@ -88,6 +93,7 @@ public class FragmentListPager {
     /**
      * This will set the current fragment to display by selecting the
      * fragment at the specified position.
+     *
      * @param position the position of the fragment to display.
      * @return true if the position is valid.
      */
@@ -96,7 +102,7 @@ public class FragmentListPager {
             //Log.h("Navigating to page " + position + "/" + (mEntryList.size() - 1));
 
             PageFragment fragment = null; // mFragmentList.get(position);
-            if(position >= mFragmentList.size()) {
+            if (position >= mFragmentList.size()) {
                 Entry entry = mEntryList.get(position);
                 Class<? extends PageFragment> fragmentClass = entry.getClassType();
                 try {

@@ -12,15 +12,11 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by johnli on 10/16/16.
- */
-
 public class MapPresenter {
 
-    MapView view;
-    TreeProvider treeProvider;
-    Subscription treeSubscription;
+    private MapView view;
+    private TreeProvider treeProvider;
+    private Subscription treeSubscription;
 
     public void attach(TreeProvider provider, MapView view) {
         this.view = view;
@@ -29,7 +25,7 @@ public class MapPresenter {
 
     public void detach() {
         view = null;
-        if(treeSubscription != null && !treeSubscription.isUnsubscribed()) {
+        if (treeSubscription != null && !treeSubscription.isUnsubscribed()) {
             treeSubscription.unsubscribe();
         }
     }
@@ -58,5 +54,9 @@ public class MapPresenter {
 
     public List<Tree> getVisibleTrees(VisibleRegion vr, List<Tree> trees, int limit) {
         return TreeMapUtil.getVisibleTrees(vr, trees, limit);
+    }
+
+    public interface MapView {
+        void updateMapWithTrees(List<Tree> trees);
     }
 }

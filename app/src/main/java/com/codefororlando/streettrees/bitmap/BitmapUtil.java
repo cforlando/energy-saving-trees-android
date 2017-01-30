@@ -1,4 +1,4 @@
-package com.codefororlando.streettrees.util;
+package com.codefororlando.streettrees.bitmap;
 
 import android.content.ContentResolver;
 import android.content.res.Resources;

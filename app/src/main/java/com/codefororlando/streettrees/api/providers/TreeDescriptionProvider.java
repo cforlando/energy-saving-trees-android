@@ -37,6 +37,7 @@ public class TreeDescriptionProvider {
     public List<TreeDescription> getAllTreeDescriptions() {
         return new ArrayList<>(treeCache.values());
     }
+
     private void populateCache(final Context context) {
         new Thread(new Runnable() {
             @Override

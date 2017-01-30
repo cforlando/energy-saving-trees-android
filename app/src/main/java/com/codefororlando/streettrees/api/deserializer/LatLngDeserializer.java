@@ -10,9 +10,6 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
-/**
- * Created by johnli on 9/25/16.
- */
 public class LatLngDeserializer implements JsonDeserializer<LatLng> {
 
     @Override
@@ -21,8 +18,8 @@ public class LatLngDeserializer implements JsonDeserializer<LatLng> {
 
         JsonObject jobject = json.getAsJsonObject();
         JsonArray jarr = jobject.get("coordinates").getAsJsonArray();
-        double lng =jarr.get(1).getAsDouble();
-        double lat =jarr.get(0).getAsDouble();
+        double lng = jarr.get(1).getAsDouble();
+        double lat = jarr.get(0).getAsDouble();
         return new LatLng(lng, lat);
     }
 }

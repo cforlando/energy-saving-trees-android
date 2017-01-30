@@ -2,10 +2,6 @@ package com.codefororlando.streettrees.requesttree;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,13 +13,8 @@ import android.widget.TextView;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.Address;
 import com.codefororlando.streettrees.api.models.ContactInfo;
-import com.codefororlando.streettrees.util.BlurBuilder;
-import com.codefororlando.streettrees.view.PageFragment;
 
-/**
- * Created by johnli on 9/24/16.
- */
-public class RequestReviewFragment extends PageFragment {
+public class RequestReviewFragment extends BlurredBackgroundFragment {
 
 
     Button nextButton;
@@ -44,11 +35,13 @@ public class RequestReviewFragment extends PageFragment {
         View view = inflater.inflate(R.layout.request_tree_review, container, false);
         bindView(view);
         updateUi();
-        initBlurredBackground(view);
-        return  view;
+        float blurRadius = 25f;
+        float blurScale = .05f;
+        initBlurredBackground(view, R.drawable.bg_house_center_trees, blurRadius, blurScale);
+        return view;
     }
 
-    void bindView(View view) {
+    private void bindView(View view) {
         addressLabel = (TextView) view.findViewById(R.id.address_label);
         contactLabel = (TextView) view.findViewById(R.id.contact_label);
         nextButton = (Button) view.findViewById(R.id.next_button);
@@ -60,14 +53,7 @@ public class RequestReviewFragment extends PageFragment {
         });
     }
 
-    void initBlurredBackground(View view) {
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.bg_house_center_trees);
-        Bitmap blurredBackground = BlurBuilder.blur(getActivity(), largeIcon, .05f, 25);
-        Drawable d = new BitmapDrawable(getResources(), blurredBackground);
-        view.setBackground(d);
-    }
-
-    void updateUi() {
+    private void updateUi() {
         Address address = delegate.getAddress();
         ContactInfo contactInfo = delegate.getContactInfo();
 
@@ -80,7 +66,7 @@ public class RequestReviewFragment extends PageFragment {
         contactLabel.setText(contactStr);
     }
 
-    void nextFragment() {
+    private void nextFragment() {
         pageListener.next();
     }
 
@@ -100,6 +86,7 @@ public class RequestReviewFragment extends PageFragment {
 
     public interface ReviewFragmentDelegate {
         Address getAddress();
+
         ContactInfo getContactInfo();
     }
 }

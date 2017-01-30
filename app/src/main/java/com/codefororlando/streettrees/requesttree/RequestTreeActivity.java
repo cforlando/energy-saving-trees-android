@@ -21,10 +21,10 @@ public class RequestTreeActivity extends AppCompatActivity implements PageFragme
         ContactInfoFragment.ContactInfoListener,
         RequestReviewFragment.ReviewFragmentDelegate {
 
-    private static List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
+    private static final List<FragmentListPager.Entry> pagerFragments = new ArrayList<>();
 
-    Address address;
-    ContactInfo contactInfo;
+    private Address address;
+    private ContactInfo contactInfo;
 
     private FragmentListPager listPager;
     private final int FRAGMENT_COUNT = 5;

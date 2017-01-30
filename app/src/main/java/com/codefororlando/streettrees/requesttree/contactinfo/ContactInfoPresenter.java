@@ -6,9 +6,6 @@ import android.util.Patterns;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by johnli on 12/10/16.
- */
 
 public class ContactInfoPresenter {
 

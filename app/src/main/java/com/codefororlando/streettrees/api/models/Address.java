@@ -3,20 +3,18 @@ package com.codefororlando.streettrees.api.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by johnli on 9/24/16.
- */
-public class Address implements Parcelable{
+public class Address implements Parcelable {
 
     public static final String TAG = "Address";
 
-    String streetAddress;
-    String streetAddressExtra;
-    String city;
-    String state;
-    String zip;
+    private String streetAddress;
+    private String streetAddressExtra;
+    private String city;
+    private String state;
+    private String zip;
 
-    public Address() { }
+    public Address() {
+    }
 
     protected Address(Parcel in) {
         streetAddress = in.readString();

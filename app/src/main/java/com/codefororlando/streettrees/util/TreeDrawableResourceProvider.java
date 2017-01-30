@@ -1,24 +1,21 @@
 package com.codefororlando.streettrees.util;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 
 import com.codefororlando.streettrees.R;
 
 import javax.inject.Inject;
 
-import static com.codefororlando.streettrees.R.drawable.cfo_yellow_trumpet;
-
-/**
- * Created by johnli on 12/10/16.
- */
-
 public class TreeDrawableResourceProvider {
 
-    public @Inject
-    TreeDrawableResourceProvider() { }
+    public
+    @Inject
+    TreeDrawableResourceProvider() {
+    }
 
-    public @DrawableRes int getDrawable(final String treeName) {
+    public
+    @DrawableRes
+    int getDrawable(final String treeName) {
         switch (treeName) {
             case "Live Oak":
                 return R.drawable.cfo_live_oak;

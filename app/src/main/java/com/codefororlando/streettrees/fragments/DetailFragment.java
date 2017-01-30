@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.codefororlando.streettrees.R;
 import com.codefororlando.streettrees.api.models.TreeDescription;
 
-/**
- * Created by jdonlan on 6/4/16.
- */
 public class DetailFragment extends Fragment {
 
     public static final String TAG = "DETAILFRAGMENT";
@@ -32,7 +29,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof DetailListener){
+        if (context instanceof DetailListener) {
             activityListener = (DetailListener) context;
         } else {
             throw new IllegalArgumentException("Cannot attach DetailFragment to Activity without DetailListener");
@@ -41,7 +38,7 @@ public class DetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        layoutView  = inflater.inflate(R.layout.fragment_detail_activity, container, false);
+        layoutView = inflater.inflate(R.layout.fragment_detail_activity, container, false);
         return layoutView;
     }
 
@@ -61,8 +58,8 @@ public class DetailFragment extends Fragment {
         ((TextView) layoutView.findViewById(R.id.treeType)).setText(treeDescription.getName());
     }
 
-    public interface DetailListener{
-        public TreeDescription getTreeData();
+    public interface DetailListener {
+        TreeDescription getTreeData();
     }
 
 }
