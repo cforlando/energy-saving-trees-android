@@ -1,37 +1,36 @@
-# <center>One Tree One Person - Android App</center>
-<hr>
+# One Tree One Person - Android App
+---
 ## About
-<hr>
+---
 One Tree One Person Android app will allow users to view where trees have been planted by the city of Orlando for residence who wish to contribute to reducing energy expenditures via the One Tree One Person initiative.
 
 ##### Version:
 1.0 (MVP)
 
 ##### Feature List:
-<ul>
+
     
-    <li>Save all tree information locally.</li>
-    <li>View all trees on a map.</li>
-    <li>Tap an icon for more information about that tree.</li>
-    <li>View Orlando City limits.</li>
-    <li>Order form for requesting a tree.</li>
+    * Save all tree information locally.
+    * View all trees on a map.
+    * Tap an icon for more information about that tree.
+    * View Orlando City limits.
+    * Order form for requesting a tree.
 
-</ul>
 
-##### Data Source: </b>
+##### Data Source: 
 
 ##### Project Lead:
 Tom Marks<br>
-<b>Slack:</b> londonatlas
+<strong>Slack:</strong> londonatlas
 
-<hr>
+---
 ## Using
-<hr>
+---
 For this project, it is recommended to use Android Studio 2.2+.
 
-<hr>
+---
 ## License
-<hr>
+---
 Copyright © 2016 Code for Orlando.
 
 MIT License
