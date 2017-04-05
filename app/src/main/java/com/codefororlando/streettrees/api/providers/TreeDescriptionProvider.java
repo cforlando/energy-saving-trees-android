@@ -42,6 +42,15 @@ public class TreeDescriptionProvider {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                String jsonString = getBakedApiResponse(context);
+                Gson gson = new GsonBuilder().create();
+                TreeDescription[] trees = gson.fromJson(jsonString, TreeDescription[].class);
+                for (TreeDescription tree : trees) {
+                    treeCache.put(tree.getName(), tree);
+                }
+            }
+
+            private String getBakedApiResponse( Context context) {
                 InputStream is = context.getResources().openRawResource(R.raw.descriptions);
                 Writer writer = new StringWriter();
                 char[] buffer = new char[1024];
@@ -61,12 +70,7 @@ public class TreeDescriptionProvider {
                     }
                 }
 
-                String jsonString = writer.toString();
-                Gson gson = new GsonBuilder().create();
-                TreeDescription[] trees = gson.fromJson(jsonString, TreeDescription[].class);
-                for (TreeDescription tree : trees) {
-                    treeCache.put(tree.getName(), tree);
-                }
+                return writer.toString();
             }
         }).run();
 
