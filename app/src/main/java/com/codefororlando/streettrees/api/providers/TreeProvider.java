@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.codefororlando.streettrees.api.TreeAPIService;
 import com.codefororlando.streettrees.api.deserializer.LatLngDeserializer;
+import com.codefororlando.streettrees.api.deserializer.ResponseSanitizer;
 import com.codefororlando.streettrees.api.models.Tree;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
@@ -46,6 +47,7 @@ public class TreeProvider implements TreeProviderInterface {
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .registerTypeAdapter(LatLng.class, new LatLngDeserializer())
+                .registerTypeAdapterFactory(new ResponseSanitizer())
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
