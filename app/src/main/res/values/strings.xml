@@ -16,4 +16,5 @@
     <string name="contact_info_fragment_title">Contact Info</string>
     <string name="confirm_request_fragment_title">Confirmation</string>
     <string name="address_form_fragment_title">Delivery Address</string>
+    <string name="tree_image_desc">Tree image</string>
 </resources>

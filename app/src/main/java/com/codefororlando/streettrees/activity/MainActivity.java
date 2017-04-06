@@ -1,7 +1,7 @@
 package com.codefororlando.streettrees.activity;
 
-import android.annotation.TargetApi;
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -20,6 +20,7 @@ import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.requesttree.RequestTreeActivity;
 import com.codefororlando.streettrees.treemap.MapPresenter;
+import com.codefororlando.streettrees.view.CustomInfoWindowAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,8 +34,8 @@ import com.google.maps.android.geojson.GeoJsonLayer;
 
 import org.json.JSONException;
 
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.setInfoWindowAdapter(new CustomInfoWindowAdapter(getLayoutInflater()));
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
         map.setOnCameraChangeListener(this);
