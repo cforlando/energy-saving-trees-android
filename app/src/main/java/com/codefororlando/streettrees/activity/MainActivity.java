@@ -193,5 +193,4 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
         }
     }
-
 }
