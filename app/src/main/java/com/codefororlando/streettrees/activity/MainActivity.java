@@ -122,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
     @Override
     public void onInfoWindowClick(Marker marker) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        String treeTame = marker.getTitle();
+        String treeName = marker.getTitle();
         LatLng location = marker.getPosition();
         detailIntent.putExtra(EXTRA_LOCATION, location);
-        detailIntent.putExtra(EXTRA_TREETYPE, treeTame);
+        detailIntent.putExtra(EXTRA_TREETYPE, treeName);
         startActivity(detailIntent);
     }
 
