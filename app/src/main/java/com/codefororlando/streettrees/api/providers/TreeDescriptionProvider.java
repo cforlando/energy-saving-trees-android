@@ -29,7 +29,7 @@ public class TreeDescriptionProvider {
 
     public TreeDescription getTreeDescription(String name) {
         if (!treeCache.containsKey(name)) {
-            throw new IllegalArgumentException("Tree name not in the cache");
+            throw new IllegalArgumentException(String.format("Tree name not in the cache [%s]",name));
         }
         return treeCache.get(name);
     }
