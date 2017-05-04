@@ -45,7 +45,18 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TreeDescription treeDescription = activityListener.getTreeData();
+        TreeDescription treeDescription = null;
+		try {
+			treeDescription = activityListener.getTreeData();
+		} catch(NullPointerException np){
+			this.getActivity().finish();
+			return;
+		}
+
+		if(treeDescription == null){
+			this.getActivity().finish();
+			return;
+		}
 
         ((TextView) layoutView.findViewById(R.id.treeHeight)).setText(treeDescription.getMinHeight());
         ((TextView) layoutView.findViewById(R.id.treeLeaf)).setText(treeDescription.getLeaf());

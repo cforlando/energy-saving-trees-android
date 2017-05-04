@@ -41,9 +41,15 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
         treeType = loadingIntent.getStringExtra(MainActivity.EXTRA_TREETYPE);
     }
 
-    @Override
-    public TreeDescription getTreeData() {
-        return treeDescriptionProvider.getTreeDescription(treeType);
-
-    }
+	@Override
+	public TreeDescription getTreeData() {
+		try {
+			return treeDescriptionProvider.getTreeDescription(treeType);
+		} catch(IllegalArgumentException iae){
+			Toast badTreeMsg = Toast.makeText(this.getApplicationContext(),
+					iae.getMessage(), Toast.LENGTH_SHORT);
+			badTreeMsg.show();
+			return null;
+	}
+}
 }
