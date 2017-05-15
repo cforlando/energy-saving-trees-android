@@ -1,7 +1,29 @@
+// Copyright © 2017 Code for Orlando.
+// 
+// MIT License
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 package com.codefororlando.streettrees.activity;
 
-import android.annotation.TargetApi;
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -20,6 +42,7 @@ import com.codefororlando.streettrees.api.models.Tree;
 import com.codefororlando.streettrees.api.providers.TreeProvider;
 import com.codefororlando.streettrees.requesttree.RequestTreeActivity;
 import com.codefororlando.streettrees.treemap.MapPresenter;
+import com.codefororlando.streettrees.view.CustomInfoWindowAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -33,8 +56,8 @@ import com.google.maps.android.geojson.GeoJsonLayer;
 
 import org.json.JSONException;
 
-import java.util.List;
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -100,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        map.setInfoWindowAdapter(new CustomInfoWindowAdapter(getLayoutInflater()));
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
         map.setOnCameraChangeListener(this);
@@ -122,10 +146,10 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
     @Override
     public void onInfoWindowClick(Marker marker) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
-        String treeTame = marker.getTitle();
+        String treeName = marker.getTitle();
         LatLng location = marker.getPosition();
         detailIntent.putExtra(EXTRA_LOCATION, location);
-        detailIntent.putExtra(EXTRA_TREETYPE, treeTame);
+        detailIntent.putExtra(EXTRA_TREETYPE, treeName);
         startActivity(detailIntent);
     }
 
@@ -191,5 +215,4 @@ public class MainActivity extends AppCompatActivity implements MapPresenter.MapV
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM_LEVEL));
         }
     }
-
 }
