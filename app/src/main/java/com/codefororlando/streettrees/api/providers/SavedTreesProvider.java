@@ -61,6 +61,16 @@ public class SavedTreesProvider {
     }
 
     private void PopulateCache(Context context) throws IOException, ParseException {
+        String jsonString = getBakedApiResponse(context);
+        Gson gson = new GsonBuilder().create();
+        TreeJsonModel[] trees = gson.fromJson(jsonString, TreeJsonModel[].class);
+        for (TreeJsonModel treeModel : trees) {
+            Tree tree =  buildTreeFromTreeModel(treeModel);
+            treeCache.put(tree.getLocation(), tree);
+        }
+    }
+
+    private String getBakedApiResponse( Context context) throws IOException {
         InputStream is = context.getResources().openRawResource(R.raw.data);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
@@ -76,25 +86,23 @@ public class SavedTreesProvider {
             is.close();
         }
 
-        String jsonString = writer.toString();
-        Gson gson = new GsonBuilder().create();
-        TreeJsonModel[] trees = gson.fromJson(jsonString, TreeJsonModel[].class);
-        for (TreeJsonModel tree : trees) {
-            Tree treeModel = new Tree();
+        return writer.toString();
+    }
 
-            treeModel.setOrder(Integer.parseInt(tree.orderId));
+    private Tree buildTreeFromTreeModel( TreeJsonModel treeModel ) throws ParseException {
+        Tree tree = new Tree();
 
-            String[] latLng = tree.location.split(", ");
-            treeModel.setLocation(Double.parseDouble(latLng[0]), Double.parseDouble(latLng[1]));
+        tree.setOrder(Integer.parseInt(treeModel.orderId));
 
-            treeModel.setTreeName(tree.treeName);
+        String[] latLng = treeModel.location.split(", ");
+        tree.setLocation(Double.parseDouble(latLng[0]), Double.parseDouble(latLng[1]));
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-            treeModel.setDate(dateFormat.parse(tree.date));
+        tree.setTreeName(treeModel.treeName);
 
-            LatLng point = treeModel.getLocation();
-            treeCache.put(point, treeModel);
-        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        tree.setDate(dateFormat.parse(treeModel.date));
+
+        return tree;
     }
 
 }
