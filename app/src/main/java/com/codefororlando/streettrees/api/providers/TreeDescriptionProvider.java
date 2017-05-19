@@ -50,6 +50,7 @@ public class TreeDescriptionProvider {
     }
 
     public TreeDescription getTreeDescription(String name) {
+        name = name.trim();
         if (!treeCache.containsKey(name)) {
             throw new IllegalArgumentException(String.format("Tree name not in the cache [%s]",name));
         }
