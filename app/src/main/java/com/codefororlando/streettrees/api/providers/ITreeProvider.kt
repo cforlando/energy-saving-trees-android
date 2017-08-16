@@ -20,17 +20,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-package com.codefororlando.streettrees.api.providers;
+package com.codefororlando.streettrees.api.providers
 
-import com.codefororlando.streettrees.api.models.Tree;
+import com.codefororlando.streettrees.api.models.Tree
+import rx.Observable
 
-import java.util.List;
+interface ITreeProvider {
 
-public interface TreeProviderInterface {
-
-    interface TreeProviderResultHandler<T> {
-        void onComplete(boolean isSuccess, List<T> result);
+    interface TreeProviderResultHandler<in T> {
+        fun onComplete(isSuccess: Boolean, result: List<T>)
     }
 
-    void getTrees(final TreeProviderResultHandler<Tree> handler);
+    fun getTrees(handler: TreeProviderResultHandler<Tree>)
+
+    val treesObservable: Observable<List<Tree>>
+
 }

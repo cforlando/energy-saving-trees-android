@@ -20,26 +20,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-package com.codefororlando.streettrees.di;
+package com.codefororlando.streettrees
 
-import com.codefororlando.streettrees.api.providers.TreeDescriptionProvider;
+import android.app.Application
+import com.codefororlando.streettrees.api.providers.treeDescriptionProviderModule
+import com.codefororlando.streettrees.api.providers.treeProviderModule
+import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.KodeinAware
+import com.github.salomonbrys.kodein.android.autoAndroidModule
+import com.github.salomonbrys.kodein.lazy
 
-import javax.inject.Singleton;
+class TreeApplication : Application(), KodeinAware {
 
-import dagger.Module;
-import dagger.Provides;
-
-@Module
-public class TreeDescriptionProviderModule {
-    private final TreeDescriptionProvider treeDescriptionProvider;
-
-    public TreeDescriptionProviderModule(TreeDescriptionProvider provider) {
-        this.treeDescriptionProvider = provider;
+    override val kodein by Kodein.lazy {
+        import(autoAndroidModule(this@TreeApplication))
+        import(treeProviderModule)
+        import(treeDescriptionProviderModule)
     }
 
-    @Provides
-    @Singleton
-    public TreeDescriptionProvider providesTreeDescriptionProvider() {
-        return treeDescriptionProvider;
-    }
 }

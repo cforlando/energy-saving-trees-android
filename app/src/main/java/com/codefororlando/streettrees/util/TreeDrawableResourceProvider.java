@@ -26,18 +26,11 @@ import android.support.annotation.DrawableRes;
 
 import com.codefororlando.streettrees.R;
 
-import javax.inject.Inject;
 
 public class TreeDrawableResourceProvider {
 
-    public
-    @Inject
-    TreeDrawableResourceProvider() {
-    }
-
-    public
     @DrawableRes
-    int getDrawable(final String treeName) {
+    public int getDrawable(final String treeName) {
         switch (treeName) {
             case "Live Oak":
                 return R.drawable.cfo_live_oak;
