@@ -35,12 +35,13 @@ import com.codefororlando.streettrees.requesttree.BlurredBackgroundFragment
 import com.codefororlando.streettrees.util.TreeDrawableResourceProvider
 import com.codefororlando.streettrees.view.ImageViewPagerAdapter
 import com.github.salomonbrys.kodein.KodeinInjector
-import com.github.salomonbrys.kodein.android.FragmentInjector
+import com.github.salomonbrys.kodein.android.SupportFragmentInjector
+import com.github.salomonbrys.kodein.instance
 
 class SelectTreeFragment : BlurredBackgroundFragment(),
         SelectTreePresenter.SelectTreeView,
         ViewPager.OnPageChangeListener,
-        FragmentInjector {
+        SupportFragmentInjector {
 
     override val injector: KodeinInjector = KodeinInjector()
 
@@ -58,13 +59,20 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
     private var presenter: SelectTreePresenter? = null
     private var pageIndex: Int = 0
 
-    private var treeDescriptionProvider: TreeDescriptionProvider? = null
-    private var treeDrawableResourceProvider: TreeDrawableResourceProvider? = null
+    private val treeDescriptionProvider: TreeDescriptionProvider by instance()
+    private val treeDrawableResourceProvider: TreeDrawableResourceProvider = TreeDrawableResourceProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeInjector()
+
         adapter = ImageViewPagerAdapter(activity)
         presenter = SelectTreePresenter(treeDescriptionProvider, treeDrawableResourceProvider)
+    }
+
+    override fun onDestroy() {
+        destroyInjector()
+        super.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
