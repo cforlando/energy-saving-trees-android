@@ -35,8 +35,8 @@ import com.codefororlando.streettrees.api.models.TreeDescription
 
 class DetailFragment : Fragment() {
 
-    private var activityListener: DetailListener? = null
-    private var layoutView: View? = null
+    private lateinit var activityListener: DetailListener
+    private lateinit var layoutView: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,17 +54,17 @@ class DetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val treeDescription = activityListener!!.treeData
+        val treeDescription = activityListener.treeData
 
-        (layoutView!!.findViewById(R.id.treeHeight) as TextView).text = treeDescription.minHeight
-        (layoutView!!.findViewById(R.id.treeLeaf) as TextView).text = treeDescription.leaf
-        (layoutView!!.findViewById(R.id.treeShape) as TextView).text = treeDescription.shape
-        (layoutView!!.findViewById(R.id.treeWidth) as TextView).text = treeDescription.minWidth
-        (layoutView!!.findViewById(R.id.treeSunlight) as TextView).text = treeDescription.sunlight
-        (layoutView!!.findViewById(R.id.treSoil) as TextView).text = treeDescription.soil
-        (layoutView!!.findViewById(R.id.treeMoisture) as TextView).text = treeDescription.moisture
-        (layoutView!!.findViewById(R.id.treeDescription) as TextView).text = treeDescription.description
-        (layoutView!!.findViewById(R.id.treeType) as TextView).text = treeDescription.name
+        (layoutView.findViewById(R.id.treeHeight) as TextView).text = treeDescription.minHeight
+        (layoutView.findViewById(R.id.treeLeaf) as TextView).text = treeDescription.leaf
+        (layoutView.findViewById(R.id.treeShape) as TextView).text = treeDescription.shape
+        (layoutView.findViewById(R.id.treeWidth) as TextView).text = treeDescription.minWidth
+        (layoutView.findViewById(R.id.treeSunlight) as TextView).text = treeDescription.sunlight
+        (layoutView.findViewById(R.id.treSoil) as TextView).text = treeDescription.soil
+        (layoutView.findViewById(R.id.treeMoisture) as TextView).text = treeDescription.moisture
+        (layoutView.findViewById(R.id.treeDescription) as TextView).text = treeDescription.description
+        (layoutView.findViewById(R.id.treeType) as TextView).text = treeDescription.name
     }
 
     interface DetailListener {

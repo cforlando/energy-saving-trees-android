@@ -45,18 +45,18 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
 
     override val injector: KodeinInjector = KodeinInjector()
 
-    private var nextButton: Button? = null
-    private var pager: ViewPager? = null
-    private var adapter: ImageViewPagerAdapter? = null
+    private lateinit var nextButton: Button
+    private lateinit var pager: ViewPager
+    private lateinit var adapter: ImageViewPagerAdapter
 
-    private var treeNameLabel: TextView? = null
-    private var descriptionLabel: TextView? = null
-    private var widthLabel: TextView? = null
-    private var heightLabel: TextView? = null
-    private var leafLabel: TextView? = null
-    private var shapeLabel: TextView? = null
+    private lateinit var treeNameLabel: TextView
+    private lateinit var descriptionLabel: TextView
+    private lateinit var widthLabel: TextView
+    private lateinit var heightLabel: TextView
+    private lateinit var leafLabel: TextView
+    private lateinit var shapeLabel: TextView
 
-    private var presenter: SelectTreePresenter? = null
+    private lateinit var presenter: SelectTreePresenter
     private var pageIndex: Int = 0
 
     private val treeDescriptionProvider: TreeDescriptionProvider by instance()
@@ -83,21 +83,21 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
         return view
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState!!.putInt(PAGER_INDEX_KEY, pager!!.currentItem)
+        outState.putInt(PAGER_INDEX_KEY, pager.currentItem)
     }
 
     override fun onStart() {
         super.onStart()
         activity.title = getString(R.string.select_tree_fragment_title)
-        presenter!!.attach(this)
-        presenter!!.loadTreeDescriptions()
+        presenter.attach(this)
+        presenter.loadTreeDescriptions()
     }
 
     override fun onStop() {
         super.onStop()
-        presenter!!.detach()
+        presenter.detach()
     }
 
     override fun present(treeViewModels: List<TreeViewModel>) {
@@ -106,7 +106,7 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
         for (i in 0..count - 1) {
             imageResIds[i] = treeViewModels[i].drawableResId
         }
-        adapter!!.setImages(imageResIds)
+        adapter.setImages(imageResIds)
         onPageSelected(0)
     }
 
@@ -119,12 +119,12 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
         shapeLabel = view.findViewById(R.id.shape) as TextView
 
         nextButton = view.findViewById(R.id.next_button) as Button
-        nextButton!!.setOnClickListener { nextFragment() }
+        nextButton.setOnClickListener { nextFragment() }
 
         pager = view.findViewById(R.id.view_pager) as ViewPager
-        pager!!.adapter = adapter
-        pager!!.addOnPageChangeListener(this)
-        pager!!.offscreenPageLimit = 1
+        pager.adapter = adapter
+        pager.addOnPageChangeListener(this)
+        pager.offscreenPageLimit = 1
     }
 
     internal fun nextFragment() {
@@ -136,18 +136,18 @@ class SelectTreeFragment : BlurredBackgroundFragment(),
         val width = String.format("%s - %s", tree.minWidth, tree.maxWidth)
         val height = String.format("%s - %s", tree.minHeight, tree.maxHeight)
 
-        treeNameLabel!!.text = tree.name
-        descriptionLabel!!.text = tree.description
-        widthLabel!!.text = width
-        heightLabel!!.text = height
-        leafLabel!!.text = tree.leaf
-        shapeLabel!!.text = tree.shape
+        treeNameLabel.text = tree.name
+        descriptionLabel.text = tree.description
+        widthLabel.text = width
+        heightLabel.text = height
+        leafLabel.text = tree.leaf
+        shapeLabel.text = tree.shape
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
     override fun onPageSelected(position: Int) {
-        val treeViewModel = presenter!!.getTreeViewModel(position)
+        val treeViewModel = presenter.getTreeViewModel(position)
         if (treeViewModel != null) {
             bindTreeViewModel(treeViewModel)
         }
