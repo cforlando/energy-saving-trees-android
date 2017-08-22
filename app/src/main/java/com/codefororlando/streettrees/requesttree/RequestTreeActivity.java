@@ -23,7 +23,6 @@
 package com.codefororlando.streettrees.requesttree;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.codefororlando.streettrees.R;
@@ -34,11 +33,12 @@ import com.codefororlando.streettrees.requesttree.deliveryaddress.AddressFormFra
 import com.codefororlando.streettrees.requesttree.selecttree.SelectTreeFragment;
 import com.codefororlando.streettrees.view.FragmentListPager;
 import com.codefororlando.streettrees.view.PageFragment;
+import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestTreeActivity extends AppCompatActivity implements PageFragment.PageFragmentListener,
+public class RequestTreeActivity extends KodeinAppCompatActivity implements PageFragment.PageFragmentListener,
         AddressFormFragment.AddressFormListener,
         ContactInfoFragment.ContactInfoListener,
         RequestReviewFragment.ReviewFragmentDelegate {

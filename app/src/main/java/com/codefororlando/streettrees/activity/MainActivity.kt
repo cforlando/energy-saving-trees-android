@@ -63,7 +63,7 @@ class MainActivity : KodeinAppCompatActivity(),
 
     private val treeProvider: ITreeProvider by instance()
     private val presenter: MapPresenter = MapPresenter()
-    private val cachedTrees: MutableList<Tree> = mutableListOf()
+    private var cachedTrees: List<Tree> = listOf()
 
     private lateinit var locationManager: LocationManager
     private lateinit var locationProvider: String
@@ -93,7 +93,7 @@ class MainActivity : KodeinAppCompatActivity(),
     override fun onStop() {
         super.onStop()
         presenter.detach()
-        cachedTrees.clear()
+        cachedTrees = emptyList()
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -135,9 +135,7 @@ class MainActivity : KodeinAppCompatActivity(),
     }
 
     override fun updateMapWithTrees(trees: List<Tree>?) {
-        if (trees == null) {
-            return
-        }
+        trees ?: return
 
         val vr = map.projection.visibleRegion
         val visibleTrees = presenter.getVisibleTrees(vr, trees, DEFAULT_MARKER_LIMIT)
@@ -145,8 +143,7 @@ class MainActivity : KodeinAppCompatActivity(),
             map.addMarker(MarkerOptions().position(tree.location).title(tree.treeName))
         }
 
-        cachedTrees.clear()
-        cachedTrees.addAll(trees)
+        cachedTrees = trees
     }
 
     override fun onRequestPermissionsResult(
